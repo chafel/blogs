@@ -1,0 +1,9 @@
+[submodule "themes/pure"]
+	path = themes/pure
+	url = https://github.com/cofess/hexo-theme-pure
+[submodule "themes/ananke"]
+	path = themes/ananke
+	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
+[submodule "themes/even"]
+	path = themes/even
+	url = https://github.com/olOwOlo/hugo-theme-even
