@@ -1,7 +1,6 @@
 ---
 title: "Hello There"
 date: 2022-02-02T05:11:04+08:00
-draft: true
 ---
 
 ## 新年新气象
