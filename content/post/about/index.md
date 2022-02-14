@@ -20,6 +20,7 @@ author: "chaofeis"
 一个热情但没有才华的年轻人。 
 
 - 前端开发者，2014 年入行，经历过 BearyChat 和 DiDi，如今在 MT
+- 我的[利器分享](https://slides.com/chaofeisun/deck)
 - 摄影爱好者，常用设备是索尼黑卡5和 iPhone
 - 影视爱好者，观影量 1000+，只为看到好故事，年轻时喜欢热血和动作，如今喜欢隐忍和回忆
 - 有一个微信公众号:{{<figure src="wx.jpg" alt="微店" width="400px">}}
