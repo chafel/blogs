@@ -2,7 +2,7 @@
 title: "Coding for Publish"
 date: 2020-07-03T16:21:35+08:00
 draft: false
-tags: ["Development"]
+tags: ["Development", "frontend"]
 categories: ["Development"]
 ---
 {{% admonition example %}}

@@ -3,7 +3,7 @@ title: "认知迭代"
 date: 2021-10-22T10:12:04+08:00
 keywords: ["认知迭代", "Cognitive Iteration"]
 description: "认知迭代"
-tags: ["认知迭代"]
+tags: ["认知迭代", "work"]
 categories: ["认知迭代"]
 draft: false
 ---
