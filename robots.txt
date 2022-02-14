@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://chaofei.tech/sitemap.xml
+Sitemap: https://chaofei.tech/sitemap.xml
