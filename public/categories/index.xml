@@ -5,6 +5,34 @@
     <link>http://chaofei.tech/categories/</link>
     <description>Recent content in Categories on chaofeis - 一个年轻人的博客站</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language><atom:link href="http://chaofei.tech/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 22 Oct 2021 10:12:04 +0800</lastBuildDate><atom:link href="http://chaofei.tech/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>认知迭代</title>
+      <link>http://chaofei.tech/categories/%E8%AE%A4%E7%9F%A5%E8%BF%AD%E4%BB%A3/</link>
+      <pubDate>Fri, 22 Oct 2021 10:12:04 +0800</pubDate>
+      
+      <guid>http://chaofei.tech/categories/%E8%AE%A4%E7%9F%A5%E8%BF%AD%E4%BB%A3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>http://chaofei.tech/categories/development/</link>
+      <pubDate>Fri, 03 Jul 2020 16:21:35 +0800</pubDate>
+      
+      <guid>http://chaofei.tech/categories/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>http://chaofei.tech/categories/%E5%85%B3%E4%BA%8E%E6%88%91/</link>
+      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      
+      <guid>http://chaofei.tech/categories/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

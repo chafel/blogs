@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on chaofeis - 一个年轻人的博客站</title>
+    <link>http://chaofei.tech/categories/development/</link>
+    <description>Recent content in Development on chaofeis - 一个年轻人的博客站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 03 Jul 2020 16:21:35 +0800</lastBuildDate><atom:link href="http://chaofei.tech/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Coding for Publish</title>
+      <link>http://chaofei.tech/post/coding-for-publish/</link>
+      <pubDate>Fri, 03 Jul 2020 16:21:35 +0800</pubDate>
+      
+      <guid>http://chaofei.tech/post/coding-for-publish/</guid>
+      <description>如何部署一个 Web 应用？前端开发者（Frontend Developer）日常工作不仅仅是画界面，积累到一定程度，必须对自己的交付物（以 Web 界面呈现</description>
+    </item>
+    
+  </channel>
+</rss>

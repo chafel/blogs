@@ -4,8 +4,6 @@ date: 2020-07-03T16:21:35+08:00
 draft: false
 tags: ["Development"]
 categories: ["Development"]
-toc: true
-autoCollapseToc: true
 ---
 {{% admonition example %}}
 如何部署一个 Web 应用？前端开发者（Frontend Developer）日常工作不仅仅是画界面，积累到一定程度，必须对自己的交付物（以 Web 界面呈现的应用）的部署方式和数据资源的存储过程有所了解，就像我之前一篇文章所说的，弄清楚整个过程可以积累知识，并能从一开始就通过架构的对比来衡量 ROI。下面谈谈我经历的交付方式以供参考：
