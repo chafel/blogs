@@ -31,7 +31,7 @@
 <meta itemprop=name content="Coding for Publish">
 <meta itemprop=description content="如何部署一个 Web 应用？前端开发者（Frontend Developer）日常工作不仅仅是画界面，积累到一定程度，必须对自己的交付物（以 Web 界面呈现"><meta itemprop=datePublished content="2020-07-03T16:21:35+08:00">
 <meta itemprop=dateModified content="2020-07-03T16:21:35+08:00">
-<meta itemprop=wordCount content="1829">
+<meta itemprop=wordCount content="1997">
 <meta itemprop=keywords content="Development,frontend,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Coding for Publish">
 <meta name=twitter:description content="如何部署一个 Web 应用？前端开发者（Frontend Developer）日常工作不仅仅是画界面，积累到一定程度，必须对自己的交付物（以 Web 界面呈现"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -95,7 +95,7 @@
 <div class=post-category>
 <a href=/categories/development/> Development </a>
 </div>
-<span class=more-meta> 约 1829 字 </span>
+<span class=more-meta> 约 1997 字 </span>
 <span class=more-meta> 预计阅读 4 分钟 </span>
 <span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
 </div>
@@ -135,7 +135,7 @@
 <p>在前端开发刀耕火种的岁月里，没有现代的 MVC 和 MVVM 开发框架，前后端往往是不分离的。为了快速生成 HTML，我们需要借助模板语言，实现用户界面与业务数据尽可能地分离，这样就可以将模板代码嵌入到后端语言所启动的 Web 服务里，运行时用模板引擎和业务数据渲染出标准的 HTML 文件。常见的模板引擎见下图：
 <figure><img src=templateEngine.png alt=templateEngine>
 </figure>
-这种情况的部署方式按照后端指定的方式和路径即可。</p>
+这种情况的部署方式按照后端指定的方式和路径即可。由于 building 和 hosting 不分离，运行时需要先调用依赖获取数据后进行 compile，用户访问速度会受到影响。在生产环境中需服务端开发人员和运维人员配合，才能构建出高性能、高可靠和安全的站点。</p>
 <h3 id=前后端分离>前后端分离</h3>
 <p>借助 Ajax 和现代开发框架，我们可以实现完全的前后端分离，也就是前端只关心静态文件，使用网络请求来获取业务数据。所以这种模式下的部署，不论是 CSR 还是 SSR，最终都是静态文件的部署，有两种方式：</p>
 <ol>
@@ -146,8 +146,15 @@
 <p>静态文件最好的归宿是 CDN，其实现机制是利用全局负载均衡系统根据客户端的 IP 地址、请求的 URL 和相应的物理地址区域，获取到距离客户端最近且有相应资源的缓存服务器，将其地址返回即可。借助缓存和分发的优势，我们可以加速访问静态资源。一般公司内部的静态文件节点往往也是绑定了 CDN 厂商提供的服务。</p>
 </li>
 </ol>
+<p>静态文件（Markup）产出后，结合 API 和 JavaScript，就可以创造出任何想要的页面，即 <a href=https://jamstack.org/>JAMStack</a> ：</p>
+<div class="admonition info">
+<p>Generate markup, decorate with JavaScript and APIs.</p>
+</div>
 <h3 id=serverless>ServerLess</h3>
-<p>运维层面的 ServerLess 指的是开发者只关心业务代码，对运行时的环境和资源通过 KVM 和 Docker 等虚拟化和容器技术，隔离了硬件以及运行在这之上的操作系统，从而实现根据业务需要地动态扩缩容。这就要求我们的应用尽可能拆分，以实现无状态地函数调用，这也就是 MicroService 和 FAAS 的概念。</p>
+<p>运维层面的 ServerLess 指的是开发者只关心业务代码，对运行时的环境和资源通过 KVM 和 Docker 等虚拟化和容器技术，隔离了硬件以及运行在这之上的操作系统，从而实现根据业务需要地动态扩缩容。这就要求我们的应用尽可能拆分，以实现无状态地函数调用，这也就是 MicroService 和 FaaS 的概念。服务端需要做的本质上跟上文的 JAMStack 同一理念：</p>
+<div class="admonition info">
+<p>Write locally, compile to the cloud.</p>
+</div>
 <h4 id=微前端>微前端</h4>
 <p>对应到前端开发者，就有了微前端的概念，简单理解就是在大型前端项目中，多人分别开发各个子模块，再接入到一个总的项目（可以理解为壳子）中，各个模块协作来完成一个大而全的项目。利用微件拆分来达到工程拆分治理的方案，不依赖于整体工程的技术栈，解耦开发和部署，可以解决工程膨胀、开发维护困难等问题，同时可以简化大公司内部的单点登录和权限管理等内部服务接入成本。这种模式下，子模块的前端部署，如果像之前提到的方式，分开部署和运行，会导致需要重新鉴权（也就是接入公司层面的登录和权限），发挥不出微服务的好处。</p>
 <p>解决办法是在主工程接入一套鉴权，子模块全部走代理流程。子模块上线到静态文件节点后，静态资源通过主工程反向代理从而运行在相同的路径中，而请求全部用相对路径，在主工程后端来转发各个模块对应的真实请求 API 地址，从而抹平差异和解决跨域。</p>
