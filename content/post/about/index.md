@@ -30,6 +30,7 @@ autoCollapseToc: false
   - MDN 的 [关键渲染路径](https://developer.mozilla.org/zh-CN/docs/Web/Performance/Critical_rendering_path) 
   - 现代 JavaScript 手册的 [事件循环：微任务和宏任务](https://zh.javascript.info/event-loop)
 - 乐于分享，我的 [利器分享](https://slides.com/chaofeisun/deck) 和 [Bookmarklet 分享](https://chafel.github.io/bookmarklets/)
+- 鼓捣过的一些样式和代码片段见 [CodePen](https://codepen.io/chaofei/)
 - 摄影爱好者，常用设备是索尼黑卡 5 和 iPhone
 - 影视爱好者，观影量 1000+，只为看到好故事，年轻时喜欢热血和动作，如今喜欢隐忍和回忆
 - 有一个微信公众号:{{<figure src="wx.jpg" alt="微店" width="400px">}}
