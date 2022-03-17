@@ -1,467 +1,169 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
-<title>JavaScript 事件循环：微任务和宏任务 - chaofeis - 一个年轻人的博客站</title>
-<meta name=renderer content="webkit">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta http-equiv=cache-control content="no-transform">
-<meta http-equiv=cache-control content="no-siteapp">
-<meta name=theme-color content="#f8f5ec">
-<meta name=msapplication-navbutton-color content="#f8f5ec">
-<meta name=apple-mobile-web-app-capable content="yes">
-<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
-<meta name=author content="chaofeis"><meta name=description content="事件循环：微任务和宏任务 JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于事件循环的。 理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也"><meta name=keywords content="chafel,chaofeis,chaofei">
-<meta name=generator content="Hugo 0.92.2 with theme even">
-<link rel=canonical href=https://chaofei.tech/post/macro-and-micro-task/>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=manifest href=/manifest.json>
-<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
-<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
-<link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet>
-<link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet>
-<meta property="og:title" content="JavaScript 事件循环：微任务和宏任务">
-<meta property="og:description" content="事件循环：微任务和宏任务 JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于事件循环的。 理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://chaofei.tech/post/macro-and-micro-task/"><meta property="article:section" content="post">
-<meta property="article:published_time" content="2019-08-12T23:02:15+08:00">
-<meta property="article:modified_time" content="2019-08-12T23:02:15+08:00">
-<meta itemprop=name content="JavaScript 事件循环：微任务和宏任务">
-<meta itemprop=description content="事件循环：微任务和宏任务 JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于事件循环的。 理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也"><meta itemprop=datePublished content="2019-08-12T23:02:15+08:00">
-<meta itemprop=dateModified content="2019-08-12T23:02:15+08:00">
-<meta itemprop=wordCount content="3561">
-<meta itemprop=keywords content="Development,javascript,"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="JavaScript 事件循环：微任务和宏任务">
-<meta name=twitter:description content="事件循环：微任务和宏任务 JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于事件循环的。 理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
-</head>
-<body>
-<div id=mobile-navbar class=mobile-navbar>
-<div class=mobile-header-logo>
-<a href=/ class=logo>chaofeis</a>
-</div>
-<div class=mobile-navbar-icon>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>JavaScript 事件循环：微任务和宏任务 - chaofeis - 一个年轻人的博客站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="chaofeis"><meta name=description content="事件循环：微任务和宏任务 JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于事件循环的。 理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也"><meta name=keywords content="chafel,chaofeis,chaofei"><meta name=generator content="Hugo 0.94.2 with theme even"><link rel=canonical href=https://chaofei.tech/post/macro-and-micro-task/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="JavaScript 事件循环：微任务和宏任务"><meta property="og:description" content="事件循环：微任务和宏任务 JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于事件循环的。 理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也"><meta property="og:type" content="article"><meta property="og:url" content="https://chaofei.tech/post/macro-and-micro-task/"><meta property="article:section" content="post"><meta property="article:published_time" content="2019-08-12T23:02:15+08:00"><meta property="article:modified_time" content="2019-08-12T23:02:15+08:00"><meta itemprop=name content="JavaScript 事件循环：微任务和宏任务"><meta itemprop=description content="事件循环：微任务和宏任务 JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于事件循环的。 理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也"><meta itemprop=datePublished content="2019-08-12T23:02:15+08:00"><meta itemprop=dateModified content="2019-08-12T23:02:15+08:00"><meta itemprop=wordCount content="3561"><meta itemprop=keywords content="Development,javascript,"><meta name=twitter:card content="summary"><meta name=twitter:title content="JavaScript 事件循环：微任务和宏任务"><meta name=twitter:description content="事件循环：微任务和宏任务 JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于事件循环的。 理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>chaofeis</a></div><div class=mobile-navbar-icon><span></span>
 <span></span>
-<span></span>
-<span></span>
-</div>
-</div>
-<nav id=mobile-menu class="mobile-menu slideout-menu">
-<ul class=mobile-menu-list>
-<a href=/>
-<li class=mobile-menu-item>Home</li>
-</a><a href=/post/>
-<li class=mobile-menu-item>Archives</li>
-</a><a href=/tags/>
-<li class=mobile-menu-item>Tags</li>
-</a><a href=/categories/>
-<li class=mobile-menu-item>Categories</li>
-</a><a href=/post/about/>
-<li class=mobile-menu-item>About</li>
-</a>
-</ul>
-</nav>
-<div class=container id=mobile-panel>
-<header id=header class=header>
-<div class=logo-wrapper>
-<a href=/ class=logo>chaofeis</a>
-</div>
-<nav class=site-navbar>
-<ul id=menu class=menu>
-<li class=menu-item>
-<a class=menu-item-link href=/>Home</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/post/>Archives</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/tags/>Tags</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/categories/>Categories</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/post/about/>About</a>
-</li>
-</ul>
-</nav>
-</header>
-<main id=main class=main>
-<div class=content-wrapper>
-<div id=content class=content>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>JavaScript 事件循环：微任务和宏任务</h1>
-<div class=post-meta>
-<span class=post-time> 2019-08-12 </span>
-<div class=post-category>
-<a href=/categories/development/> Development </a>
-</div>
-<span class=more-meta> 约 3561 字 </span>
-<span class=more-meta> 预计阅读 8 分钟 </span>
-<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
-</div>
-</header>
-<div class=post-toc id=post-toc>
-<h2 class=post-toc-title>文章目录</h2>
-<div class="post-toc-content always-active">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#事件循环微任务和宏任务>事件循环：微任务和宏任务</a>
-<ul>
-<li><a href=#事件循环>事件循环</a></li>
-<li><a href=#用例-1拆分-cpu-耗费型任务>用例 1：拆分 CPU 耗费型任务</a></li>
-<li><a href=#用例-2进度指示器>用例 2：进度指示器</a></li>
-<li><a href=#用例-3在事件之后做一些事情>用例 3：在事件之后做一些事情</a></li>
-<li><a href=#宏任务和微任务>宏任务和微任务</a></li>
-<li><a href=#总结>总结</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-<div class=post-content>
-<h1 id=事件循环微任务和宏任务>事件循环：微任务和宏任务</h1>
-<p>JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于<strong>事件循环</strong>的。</p>
-<p>理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也很重要。</p>
-<p>在本掌中我们首先覆盖关于这个事情是如何运作的理论细节，然后看看这个知识的实际应用。</p>
-<h2 id=事件循环>事件循环</h2>
-<p><strong>事件循环</strong>的概念非常简单。它是一个在 JavaScript 引擎等待任务、执行任务和休眠等待更多任务这几个状态之间的无穷无尽的循环。</p>
-<p>执行引擎通用的算法：</p>
-<ol>
-<li>当有任务时：
-<ul>
-<li>从最先进入的任务开始执行</li>
-</ul>
-</li>
-<li>休眠到有新的任务进入，然后到第 1 步</li>
-</ol>
-<p>当我们浏览一个网页时就是上述这种形式。JavaScript 引擎大多数时候什么也不做，只在一个脚本、处理函数或者事件被激活时运行。</p>
-<p>任务举例：</p>
-<ul>
-<li>当外部脚本 <code>&lt;script src="..."></code> 加载进来时，任务就是执行它。</li>
-<li>当用户移动鼠标时，任务就是派发出 <code>mousemove</code> 事件和执行处理函数。</li>
-<li>当定时器 <code>setTimeout</code> 到期时，任务就是运行其回调。</li>
-<li>……诸如此类。</li>
-</ul>
-<p>任务队列就是一个集合，引擎来处理它们，然后等待更多的任务（即休眠，几乎不消耗 CPU 资源）。</p>
-<p>一个任务到来时引擎可能正处于运行状态，那么这个任务就被入队。</p>
-<p>多个任务组成了一个队列，命名为“宏任务队列”（v8 术语）：</p>
-<p><img src=https://zh.javascript.info/article/event-loop/eventLoop.svg alt="Event Loop"></p>
-<p>例如，当引擎忙于执行一段 <code>script</code> 时，还可能有用户移动鼠标产生了 <code>mousemove</code> 事件，<code>setTimeout</code> 或许也刚好到期等这些事件，这些任务组成一个队列，如上图所示。</p>
-<p>队列里的任务执行基于“先进先出”原则。当浏览器引擎执行完 <code>script</code>，然后来处理 <code>mousemove</code> 事件，然后再执行 <code>setTimeout</code> 的执行函数，诸如此类。</p>
-<p>到目前为止很简单，是吧？</p>
-<p>两个更细节的点：</p>
-<ol>
-<li>当引擎处理任务时不会执行渲染。如果执行需要很长一段时间也是如此。对于 DOM 的修改只有当任务执行完成才会被绘制。</li>
-<li>如果一个任务执行时间过长，浏览器无法处理其他任务，在一定时间后就会在整个页面抛出一个如“页面未响应”的警示建议终止这个任务。这样的场景经常发生在很多复杂计算或者程序错误执行到死循环里。</li>
-</ol>
-<p>这样我们有了一个理论，接下来我们来应用所学到的知识。</p>
-<h2 id=用例-1拆分-cpu-耗费型任务>用例 1：拆分 CPU 耗费型任务</h2>
-<p>假如我们有一个 CPU 耗费型任务。</p>
-<p>例如，语法高亮（用来给本示例页面代码上色）是相当繁重的 CPU 任务。为了高亮代码，它执行分析，创造了很多上色后的元素，并把它们添加到页面文档中，这样长文本就会消耗很多的时间。</p>
-<p>当引擎忙于语法高亮时，它就无法处理其他 DOM 相关的事情，执行用户的事件等。这样或许会导致浏览器“中断”甚至是“挂起”一段时间，这没法接受。</p>
-<p>我们可以拆分大任务为小片任务来规避问题。高亮前 100 行，然后设定<code>setTimeout</code>（延时参数为 0）来高亮另外的 100 行，以此类推。</p>
-<p>为了演示此方法，从简洁性上考虑，我们用从 <code>1</code> 数到 <code>1000000000</code> 的函数来代替语法高亮。</p>
-<p>如果你运行如下代码，引擎会"挂起"一段时间。对于服务端 JS 这会显而易见，当运行在浏览器上，尝试点击页面上其他按钮时，你会注意到没有任何其他的事件被执行知道数数函数执行完成。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
-
-  <span style=color:#75715e>// 执行了一些繁重的任务
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>j</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>j</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e9</span>; <span style=color:#a6e22e>j</span><span style=color:#f92672>++</span>) {
-    <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
-  }
-
-  <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;Done in &#34;</span> <span style=color:#f92672>+</span> (Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>-</span> <span style=color:#a6e22e>start</span>) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;ms&#39;</span>);
-}
-
-<span style=color:#a6e22e>count</span>();
-
-</code></pre></div><p>浏览器甚至可能会出现“脚本执行时间过长”的警告。</p>
-<p>让我们用嵌套的 <code>setTimeout</code> 拆分这个任务：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
-
-  <span style=color:#75715e>// 做一个繁重工作的一部分 (*)
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>do</span> {
-    <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
-  } <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1e6</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>);
-
-  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>1e9</span>) {
-    <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;Done in &#34;</span> <span style=color:#f92672>+</span> (Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>-</span> <span style=color:#a6e22e>start</span>) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;ms&#39;</span>);
-  } <span style=color:#66d9ef>else</span> {
-    <span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>count</span>); <span style=color:#75715e>// 计划新的调用 (**)
-</span><span style=color:#75715e></span>  }
-
-}
-
-<span style=color:#a6e22e>count</span>();
-
-</code></pre></div><p>现在浏览器界面在数数执行过程中是完全可用的。</p>
-<p>单次运行 <code>count</code> 做了一部分工作 <code>(*)</code>，然后如果必要的话，重新计划自身的执行 <code>(**)</code>：</p>
-<ol>
-<li>首先运行数数：<code>i=1...1000000</code>。</li>
-<li>然后运行数数：<code>i=1000001..2000000</code>。</li>
-<li>以此类推。</li>
-</ol>
-<p>现在，如果一个任务（例如 <code>onclick</code> 事件）在引擎忙着执行第一步的时候同时发生，它就会入队然后在第一步执行完成后且第二步之前执行。周期性地在 <code>count</code> 的执行返回到事件循环，为 JavaScript 引擎提供了足够的 “空间” 来做别的事情，比如对用户的行为作出反应。</p>
-<p>需要关注的是两者变体 —— 有和没有用 <code>setTimeout</code> 拆分任务 —— 在执行速度上是相当的。在执行数数的总耗时是没有多少差异的。</p>
-<p>为了使两者耗时更接近，我们来做一个改进。</p>
-<p>我们把定时任务放在 <code>count()</code> 的一开始：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
-
-  <span style=color:#75715e>// 移动定时任务到开始处
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e9</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1e6</span>) {
-    <span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>count</span>); <span style=color:#75715e>// 定时发起新的调用
-</span><span style=color:#75715e></span>  }
-
-  <span style=color:#66d9ef>do</span> {
-    <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
-  } <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1e6</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>);
-
-  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>1e9</span>) {
-    <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;Done in &#34;</span> <span style=color:#f92672>+</span> (Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>-</span> <span style=color:#a6e22e>start</span>) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;ms&#39;</span>);
-  }
-
-}
-
-<span style=color:#a6e22e>count</span>();
-
-</code></pre></div><p>现在我们开始调用 <code>count()</code>，在发现我们还将需要调用 <code>count()</code> 时，就在做具体的任务之前立即定时。</p>
-<p>如果你运行它，会注意到耗时明显减少。</p>
-<p>为什么？</p>
-<p>很简单：你应该还记得，浏览器执行多个嵌套的 <code>setTimeout</code> 调用最小延时 4ms。即使设置了 <code>0</code> 还是 <code>4ms</code>（或者更久一些）。所以我们早一点定时，它就会运行地快一些。</p>
-<p>最后，我们拆分 CPU 耗费型任务为几部分，现在它不会阻塞用户的界面了。 而且总耗时并不会多很多。</p>
-<h2 id=用例-2进度指示器>用例 2：进度指示器</h2>
-<p>另外一个给浏览器脚本拆分繁重任务的好处是我们可以展示进度指示器。</p>
-<p>通常浏览器会在当前运行的代码完成后执行渲染。如果一个任务耗时很久也是这样。对 DOM 的修改只有在任务结束后才会被绘制。</p>
-<p>从一方面讲，这非常好，因为我们的函数可能创造出很多的元素，把它们挨个地插入到文档中然后改变它们的样式 —— 页面访问者就不会看到任何的 “中间态”，也就是未完成的状态。很重要，对吧？</p>
-<p>这是一个样例，<code>i</code> 的改变在函数结束前不会有变化，所以我们只会看到最后的值：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;progress&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
-
-&lt;<span style=color:#f92672>script</span>&gt;
-
-  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
-    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e6</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-      <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
-      <span style=color:#a6e22e>progress</span>.<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span>;
-    }
-  }
-
-  <span style=color:#a6e22e>count</span>();
-&lt;/<span style=color:#f92672>script</span>&gt;
-
-</code></pre></div><p>……但是我们可能会想要在执行任务期间展示一些东西，例如进度条。</p>
-<p>如果我们用 <code>setTimeout</code> 拆分繁重任务为小片段，值的改变就会在它们之间被绘制。</p>
-<p>这样看起来好多了：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;progress&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
-
-&lt;<span style=color:#f92672>script</span>&gt;
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-
-  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
-
-    <span style=color:#75715e>// 执行一些繁重的工作 (*)
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>do</span> {
-      <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
-      <span style=color:#a6e22e>progress</span>.<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span>;
-    } <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1e3</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>);
-
-    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e7</span>) {
-      <span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>count</span>);
-    }
-
-  }
-
-  <span style=color:#a6e22e>count</span>();
-&lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>现在 <code>div</code> 展示了 <code>i</code> 的值的增长，跟进度条很类似了。</p>
-<h2 id=用例-3在事件之后做一些事情>用例 3：在事件之后做一些事情</h2>
-<p>在事件处理中我们可能要延期一些行为的执行，直到事件冒泡完成并被所有层级接手和处理之后。我们可以把这部分代码放在 0 延迟的 <code>setTimeout</code>。</p>
-<p>在 <a href=https://zh.javascript.info/dispatch-events>生成自定义事件</a> 章节中，我们看到这样一个例子：自定义事件 <code>menu-open</code> 在 <code>setTimeout</code> 中被派发，所以它发生在“click”事件被完全处理后。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>menu</span>.<span style=color:#a6e22e>onclick</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>() {
-  <span style=color:#75715e>// ...
-</span><span style=color:#75715e></span>
-  <span style=color:#75715e>// 创建一个附带被点击菜单项数据的自定义事件
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>customEvent</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>CustomEvent</span>(<span style=color:#e6db74>&#34;menu-open&#34;</span>, {
-    <span style=color:#a6e22e>bubbles</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>
-  });
-
-  <span style=color:#75715e>// 异步派发自定义事件
-</span><span style=color:#75715e></span>  <span style=color:#a6e22e>setTimeout</span>(() =&gt; <span style=color:#a6e22e>menu</span>.<span style=color:#a6e22e>dispatchEvent</span>(<span style=color:#a6e22e>customEvent</span>));
-};
-</code></pre></div><h2 id=宏任务和微任务>宏任务和微任务</h2>
-<p>伴随本章描述的<strong>宏任务</strong>还存在着<strong>微任务</strong>，在章节 <a href=https://zh.javascript.info/microtask-queue>微任务</a> 有提及到。</p>
-<p>微任务仅仅由我们的代码产生。它们通常由 promises 生成：对于 <code>.then/catch/finally</code> 的处理函数变成了一个微任务。微任务通常"隐藏在" <code>await</code> 下，因为它也是另一种处理 promise 的形式。</p>
-<p>有一个特殊的函数 <code>queueMicrotask(func)</code>，可以将 <code>func</code> 加入到微任务队列来执行。</p>
-<p><strong>在每个宏任务之后，引擎立即执行所有微任务队列中的任务，比任何其他的宏任务或者渲染或者其他事情都要优先。</strong></p>
-<p>来看看例子：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>setTimeout</span>(() =&gt; <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;timeout&#34;</span>));
-
-Promise.<span style=color:#a6e22e>resolve</span>()
-  .<span style=color:#a6e22e>then</span>(() =&gt; <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;promise&#34;</span>));
-
-<span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;code&#34;</span>);
-</code></pre></div><p>这里的执行顺序是什么呢？</p>
-<ol>
-<li><code>code</code> 首先出现，因为它是常规的同步调用。</li>
-<li><code>promise</code> 第二个出现，因为 <code>then</code> 从微任务队列中来，在当前代码之后执行。</li>
-<li><code>timeout</code> 最后出现，因为它是一个宏任务。</li>
-</ol>
-<p>更详细的事件循环图如下：</p>
-<p><img src=https://zh.javascript.info/article/event-loop/eventLoop-full.svg alt=full-event-loop></p>
-<p><strong>所有的微任务在任何其他的事件处理或者渲染或者任何其他的宏任务发生之前完成调用。</strong></p>
-<p>这非常重要，因为它保证了微任务中的程序运行环境基本一致（没有鼠标位置改变，没有新的网络返回数据，等等）。</p>
-<p>如果我们想要异步执行（在当前代码之后）一个函数，但是要在修改被渲染或者新的事件被处理之前，我们可以用 <code>queueMicrotask</code> 来定时执行。</p>
-<p>还是跟前面的类似的“数数型进度展示条”的例子，不同的是用 <code>queueMicrotask</code> 来代替 <code>setTimeout</code>。你可以看到它在最后才渲染。就像写的是同步代码：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;progress&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
-
-&lt;<span style=color:#f92672>script</span>&gt;
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-
-  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
-
-    <span style=color:#75715e>// 执行一些繁重的工作 (*)
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>do</span> {
-      <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
-      <span style=color:#a6e22e>progress</span>.<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span>;
-    } <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1e3</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>);
-
-    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e6</span>) {
-      <span style=color:#a6e22e>queueMicrotask</span>(<span style=color:#a6e22e>count</span>);
-    }
-
-  }
-
-  <span style=color:#a6e22e>count</span>();
-&lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><h2 id=总结>总结</h2>
-<p>更具体的事件循环的算法（尽管跟 <a href=https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model>标准</a> 相比是简化过的）：</p>
-<ol>
-<li>从<strong>宏任务</strong>队列出列并执行最前面的任务（比如“script”）。</li>
-<li>执行所有的<strong>微任务</strong>：
-<ul>
-<li>当微任务队列非空时：
-<ul>
-<li>出列并运行最前面的微任务。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>如有需要执行渲染。</li>
-<li>如果宏任务队列为空，休眠直到一个宏任务出现。</li>
-<li>到步骤 1 中。</li>
-</ol>
-<p>计划一个新的<strong>宏任务</strong>：</p>
-<ul>
-<li>使用 0 延时的 <code>setTimeout(f)</code>。</li>
-</ul>
-<p>它被用来拆分一个计算耗费型任务为小片段，使浏览器可以对用户行为作出反馈和展示计算的进度。</p>
-<p>也被用在事件处理函数中来定时执行一个行为，在当前事件被完全处理（冒泡结束）之后。</p>
-<p>计划一个新的<strong>微任务</strong>：</p>
-<ul>
-<li>使用 <code>queueMicrotask(f)</code>。</li>
-<li>promise 的处理函数也是进入到微任务队列。</li>
-</ul>
-<p>在微任务中间没有 UI 或者网络事件的处理：它们一个接一个地立即执行。</p>
-<p>所以我们可以用 <code>queueMicrotask</code> 来异步地执行函数，但是保持环境状态的一致。</p>
-<pre tabindex=0><code class=language-smart data-lang=smart>为了繁重任务不至于阻塞事件循环，我们可以用 [Web Workers](https://html.spec.whatwg.org/multipage/workers.html)。
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/post/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>chaofeis</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/post/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>JavaScript 事件循环：微任务和宏任务</h1><div class=post-meta><span class=post-time>2019-08-12</span><div class=post-category><a href=/categories/development/>Development</a></div><span class=more-meta>约 3561 字</span>
+<span class=more-meta>预计阅读 8 分钟</span>
+<span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#事件循环微任务和宏任务>事件循环：微任务和宏任务</a><ul><li><a href=#事件循环>事件循环</a></li><li><a href=#用例-1拆分-cpu-耗费型任务>用例 1：拆分 CPU 耗费型任务</a></li><li><a href=#用例-2进度指示器>用例 2：进度指示器</a></li><li><a href=#用例-3在事件之后做一些事情>用例 3：在事件之后做一些事情</a></li><li><a href=#宏任务和微任务>宏任务和微任务</a></li><li><a href=#总结>总结</a></li></ul></li></ul></nav></div></div><div class=post-content><h1 id=事件循环微任务和宏任务>事件循环：微任务和宏任务</h1><p>JavaScript 在浏览器里的执行流程跟在 Node.js 中一样，是基于<strong>事件循环</strong>的。</p><p>理解事件循环如何运行对于代码优化是重要的，有时对于正确的架构也很重要。</p><p>在本掌中我们首先覆盖关于这个事情是如何运作的理论细节，然后看看这个知识的实际应用。</p><h2 id=事件循环>事件循环</h2><p><strong>事件循环</strong>的概念非常简单。它是一个在 JavaScript 引擎等待任务、执行任务和休眠等待更多任务这几个状态之间的无穷无尽的循环。</p><p>执行引擎通用的算法：</p><ol><li>当有任务时：<ul><li>从最先进入的任务开始执行</li></ul></li><li>休眠到有新的任务进入，然后到第 1 步</li></ol><p>当我们浏览一个网页时就是上述这种形式。JavaScript 引擎大多数时候什么也不做，只在一个脚本、处理函数或者事件被激活时运行。</p><p>任务举例：</p><ul><li>当外部脚本 <code>&lt;script src="..."></code> 加载进来时，任务就是执行它。</li><li>当用户移动鼠标时，任务就是派发出 <code>mousemove</code> 事件和执行处理函数。</li><li>当定时器 <code>setTimeout</code> 到期时，任务就是运行其回调。</li><li>……诸如此类。</li></ul><p>任务队列就是一个集合，引擎来处理它们，然后等待更多的任务（即休眠，几乎不消耗 CPU 资源）。</p><p>一个任务到来时引擎可能正处于运行状态，那么这个任务就被入队。</p><p>多个任务组成了一个队列，命名为“宏任务队列”（v8 术语）：</p><p><img src=https://zh.javascript.info/article/event-loop/eventLoop.svg alt="Event Loop"></p><p>例如，当引擎忙于执行一段 <code>script</code> 时，还可能有用户移动鼠标产生了 <code>mousemove</code> 事件，<code>setTimeout</code> 或许也刚好到期等这些事件，这些任务组成一个队列，如上图所示。</p><p>队列里的任务执行基于“先进先出”原则。当浏览器引擎执行完 <code>script</code>，然后来处理 <code>mousemove</code> 事件，然后再执行 <code>setTimeout</code> 的执行函数，诸如此类。</p><p>到目前为止很简单，是吧？</p><p>两个更细节的点：</p><ol><li>当引擎处理任务时不会执行渲染。如果执行需要很长一段时间也是如此。对于 DOM 的修改只有当任务执行完成才会被绘制。</li><li>如果一个任务执行时间过长，浏览器无法处理其他任务，在一定时间后就会在整个页面抛出一个如“页面未响应”的警示建议终止这个任务。这样的场景经常发生在很多复杂计算或者程序错误执行到死循环里。</li></ol><p>这样我们有了一个理论，接下来我们来应用所学到的知识。</p><h2 id=用例-1拆分-cpu-耗费型任务>用例 1：拆分 CPU 耗费型任务</h2><p>假如我们有一个 CPU 耗费型任务。</p><p>例如，语法高亮（用来给本示例页面代码上色）是相当繁重的 CPU 任务。为了高亮代码，它执行分析，创造了很多上色后的元素，并把它们添加到页面文档中，这样长文本就会消耗很多的时间。</p><p>当引擎忙于语法高亮时，它就无法处理其他 DOM 相关的事情，执行用户的事件等。这样或许会导致浏览器“中断”甚至是“挂起”一段时间，这没法接受。</p><p>我们可以拆分大任务为小片任务来规避问题。高亮前 100 行，然后设定<code>setTimeout</code>（延时参数为 0）来高亮另外的 100 行，以此类推。</p><p>为了演示此方法，从简洁性上考虑，我们用从 <code>1</code> 数到 <code>1000000000</code> 的函数来代替语法高亮。</p><p>如果你运行如下代码，引擎会"挂起"一段时间。对于服务端 JS 这会显而易见，当运行在浏览器上，尝试点击页面上其他按钮时，你会注意到没有任何其他的事件被执行知道数数函数执行完成。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 执行了一些繁重的任务
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>j</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>j</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e9</span>; <span style=color:#a6e22e>j</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;Done in &#34;</span> <span style=color:#f92672>+</span> (Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>-</span> <span style=color:#a6e22e>start</span>) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;ms&#39;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>count</span>();
+</span></span></code></pre></div><p>浏览器甚至可能会出现“脚本执行时间过长”的警告。</p><p>让我们用嵌套的 <code>setTimeout</code> 拆分这个任务：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 做一个繁重工作的一部分 (*)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1e6</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>1e9</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;Done in &#34;</span> <span style=color:#f92672>+</span> (Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>-</span> <span style=color:#a6e22e>start</span>) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;ms&#39;</span>);
+</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>count</span>); <span style=color:#75715e>// 计划新的调用 (**)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>count</span>();
+</span></span></code></pre></div><p>现在浏览器界面在数数执行过程中是完全可用的。</p><p>单次运行 <code>count</code> 做了一部分工作 <code>(*)</code>，然后如果必要的话，重新计划自身的执行 <code>(**)</code>：</p><ol><li>首先运行数数：<code>i=1...1000000</code>。</li><li>然后运行数数：<code>i=1000001..2000000</code>。</li><li>以此类推。</li></ol><p>现在，如果一个任务（例如 <code>onclick</code> 事件）在引擎忙着执行第一步的时候同时发生，它就会入队然后在第一步执行完成后且第二步之前执行。周期性地在 <code>count</code> 的执行返回到事件循环，为 JavaScript 引擎提供了足够的 “空间” 来做别的事情，比如对用户的行为作出反应。</p><p>需要关注的是两者变体 —— 有和没有用 <code>setTimeout</code> 拆分任务 —— 在执行速度上是相当的。在执行数数的总耗时是没有多少差异的。</p><p>为了使两者耗时更接近，我们来做一个改进。</p><p>我们把定时任务放在 <code>count()</code> 的一开始：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 移动定时任务到开始处
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e9</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1e6</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>count</span>); <span style=color:#75715e>// 定时发起新的调用
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1e6</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>1e9</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;Done in &#34;</span> <span style=color:#f92672>+</span> (Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>-</span> <span style=color:#a6e22e>start</span>) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;ms&#39;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>count</span>();
+</span></span></code></pre></div><p>现在我们开始调用 <code>count()</code>，在发现我们还将需要调用 <code>count()</code> 时，就在做具体的任务之前立即定时。</p><p>如果你运行它，会注意到耗时明显减少。</p><p>为什么？</p><p>很简单：你应该还记得，浏览器执行多个嵌套的 <code>setTimeout</code> 调用最小延时 4ms。即使设置了 <code>0</code> 还是 <code>4ms</code>（或者更久一些）。所以我们早一点定时，它就会运行地快一些。</p><p>最后，我们拆分 CPU 耗费型任务为几部分，现在它不会阻塞用户的界面了。 而且总耗时并不会多很多。</p><h2 id=用例-2进度指示器>用例 2：进度指示器</h2><p>另外一个给浏览器脚本拆分繁重任务的好处是我们可以展示进度指示器。</p><p>通常浏览器会在当前运行的代码完成后执行渲染。如果一个任务耗时很久也是这样。对 DOM 的修改只有在任务结束后才会被绘制。</p><p>从一方面讲，这非常好，因为我们的函数可能创造出很多的元素，把它们挨个地插入到文档中然后改变它们的样式 —— 页面访问者就不会看到任何的 “中间态”，也就是未完成的状态。很重要，对吧？</p><p>这是一个样例，<code>i</code> 的改变在函数结束前不会有变化，所以我们只会看到最后的值：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;progress&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e6</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>progress</span>.<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>count</span>();
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><p>……但是我们可能会想要在执行任务期间展示一些东西，例如进度条。</p><p>如果我们用 <code>setTimeout</code> 拆分繁重任务为小片段，值的改变就会在它们之间被绘制。</p><p>这样看起来好多了：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;progress&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 执行一些繁重的工作 (*)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>progress</span>.<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span>;
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1e3</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e7</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>count</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>count</span>();
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><p>现在 <code>div</code> 展示了 <code>i</code> 的值的增长，跟进度条很类似了。</p><h2 id=用例-3在事件之后做一些事情>用例 3：在事件之后做一些事情</h2><p>在事件处理中我们可能要延期一些行为的执行，直到事件冒泡完成并被所有层级接手和处理之后。我们可以把这部分代码放在 0 延迟的 <code>setTimeout</code>。</p><p>在 <a href=https://zh.javascript.info/dispatch-events>生成自定义事件</a> 章节中，我们看到这样一个例子：自定义事件 <code>menu-open</code> 在 <code>setTimeout</code> 中被派发，所以它发生在“click”事件被完全处理后。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>menu</span>.<span style=color:#a6e22e>onclick</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 创建一个附带被点击菜单项数据的自定义事件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>customEvent</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>CustomEvent</span>(<span style=color:#e6db74>&#34;menu-open&#34;</span>, {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>bubbles</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 异步派发自定义事件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>setTimeout</span>(() =&gt; <span style=color:#a6e22e>menu</span>.<span style=color:#a6e22e>dispatchEvent</span>(<span style=color:#a6e22e>customEvent</span>));
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h2 id=宏任务和微任务>宏任务和微任务</h2><p>伴随本章描述的<strong>宏任务</strong>还存在着<strong>微任务</strong>，在章节 <a href=https://zh.javascript.info/microtask-queue>微任务</a> 有提及到。</p><p>微任务仅仅由我们的代码产生。它们通常由 promises 生成：对于 <code>.then/catch/finally</code> 的处理函数变成了一个微任务。微任务通常"隐藏在" <code>await</code> 下，因为它也是另一种处理 promise 的形式。</p><p>有一个特殊的函数 <code>queueMicrotask(func)</code>，可以将 <code>func</code> 加入到微任务队列来执行。</p><p><strong>在每个宏任务之后，引擎立即执行所有微任务队列中的任务，比任何其他的宏任务或者渲染或者其他事情都要优先。</strong></p><p>来看看例子：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>setTimeout</span>(() =&gt; <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;timeout&#34;</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Promise.<span style=color:#a6e22e>resolve</span>()
+</span></span><span style=display:flex><span>  .<span style=color:#a6e22e>then</span>(() =&gt; <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;promise&#34;</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;code&#34;</span>);
+</span></span></code></pre></div><p>这里的执行顺序是什么呢？</p><ol><li><code>code</code> 首先出现，因为它是常规的同步调用。</li><li><code>promise</code> 第二个出现，因为 <code>then</code> 从微任务队列中来，在当前代码之后执行。</li><li><code>timeout</code> 最后出现，因为它是一个宏任务。</li></ol><p>更详细的事件循环图如下：</p><p><img src=https://zh.javascript.info/article/event-loop/eventLoop-full.svg alt=full-event-loop></p><p><strong>所有的微任务在任何其他的事件处理或者渲染或者任何其他的宏任务发生之前完成调用。</strong></p><p>这非常重要，因为它保证了微任务中的程序运行环境基本一致（没有鼠标位置改变，没有新的网络返回数据，等等）。</p><p>如果我们想要异步执行（在当前代码之后）一个函数，但是要在修改被渲染或者新的事件被处理之前，我们可以用 <code>queueMicrotask</code> 来定时执行。</p><p>还是跟前面的类似的“数数型进度展示条”的例子，不同的是用 <code>queueMicrotask</code> 来代替 <code>setTimeout</code>。你可以看到它在最后才渲染。就像写的是同步代码：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;progress&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>count</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 执行一些繁重的工作 (*)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>progress</span>.<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span>;
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1e3</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1e6</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>queueMicrotask</span>(<span style=color:#a6e22e>count</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>count</span>();
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><h2 id=总结>总结</h2><p>更具体的事件循环的算法（尽管跟 <a href=https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model>标准</a> 相比是简化过的）：</p><ol><li>从<strong>宏任务</strong>队列出列并执行最前面的任务（比如“script”）。</li><li>执行所有的<strong>微任务</strong>：<ul><li>当微任务队列非空时：<ul><li>出列并运行最前面的微任务。</li></ul></li></ul></li><li>如有需要执行渲染。</li><li>如果宏任务队列为空，休眠直到一个宏任务出现。</li><li>到步骤 1 中。</li></ol><p>计划一个新的<strong>宏任务</strong>：</p><ul><li>使用 0 延时的 <code>setTimeout(f)</code>。</li></ul><p>它被用来拆分一个计算耗费型任务为小片段，使浏览器可以对用户行为作出反馈和展示计算的进度。</p><p>也被用在事件处理函数中来定时执行一个行为，在当前事件被完全处理（冒泡结束）之后。</p><p>计划一个新的<strong>微任务</strong>：</p><ul><li>使用 <code>queueMicrotask(f)</code>。</li><li>promise 的处理函数也是进入到微任务队列。</li></ul><p>在微任务中间没有 UI 或者网络事件的处理：它们一个接一个地立即执行。</p><p>所以我们可以用 <code>queueMicrotask</code> 来异步地执行函数，但是保持环境状态的一致。</p><pre tabindex=0><code class=language-smart data-lang=smart>为了繁重任务不至于阻塞事件循环，我们可以用 [Web Workers](https://html.spec.whatwg.org/multipage/workers.html)。
 
 这是一个在平行线程中运行代码的办法。
 
 Web Workers 可以跟主线程交换信息，但是它们可以有自己的变量和自己的事件循环。
 
 Web Workers 无权访问 DOM，所以它们主要在计算上有用，用来使用多核 CPU 同时执行的能力。
-</code></pre><div class="admonition tip"><p class=admonition-title>提示</p>
-<p>本篇译自和首发于 <a href=https://zh.javascript.info/event-loop>javascript.info</a> ，英文版质量不错，遂译为中文并贡献了 <a href=https://github.com/javascript-tutorial/zh.javascript.info/pull/446>PullRequest</a></p>
-</div>
-</div>
-<div class=post-copyright>
-<p class=copyright-item>
-<span class=item-title>文章作者</span>
-<span class=item-content>chaofeis</span>
-</p>
-<p class=copyright-item>
-<span class=item-title>上次更新</span>
-<span class=item-content>
-2019-08-12
-</span>
-</p>
-<p class=copyright-item>
-<span class=item-title>许可协议</span>
-<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span>
-</p>
-</div>
-<footer class=post-footer>
-<div class=post-tags>
-<a href=/tags/development/>Development</a>
-<a href=/tags/javascript/>javascript</a>
-</div>
-<nav class=post-nav>
-<a class=prev href=/post/useful-tech-terms/>
-<i class="iconfont icon-left"></i>
+</code></pre><div class="admonition tip"><p class=admonition-title>提示</p><p>本篇译自和首发于 <a href=https://zh.javascript.info/event-loop>javascript.info</a> ，英文版质量不错，遂译为中文并贡献了 <a href=https://github.com/javascript-tutorial/zh.javascript.info/pull/446>PullRequest</a></p></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>chaofeis</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2019-08-12</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/development/>Development</a>
+<a href=/tags/javascript/>javascript</a></div><nav class=post-nav><a class=prev href=/post/useful-tech-terms/><i class="iconfont icon-left"></i>
 <span class="prev-text nav-default">【译文】几个有用的技术名词：牦牛剃须、技术债和自行车棚</span>
-<span class="prev-text nav-mobile">上一篇</span>
-</a>
-<a class=next href=/post/question-mark-in-regular-expression/>
-<span class="next-text nav-default">？在正则表达式的应用</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/question-mark-in-regular-expression/><span class="next-text nav-default">？在正则表达式的应用</span>
 <span class="next-text nav-mobile">下一篇</span>
-<i class="iconfont icon-right"></i>
-</a>
-</nav>
-</footer>
-</article>
-</div>
-</div>
-</main>
-<footer id=footer class=footer>
-<div class=social-links>
-<a href=mailto:chaofeis@email.com class="iconfont icon-email" title=email></a>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:chaofeis@email.com class="iconfont icon-email" title=email></a>
 <a href=https://twitter.com/chaofeis class="iconfont icon-twitter" title=twitter></a>
 <a href=https://github.com/chafel class="iconfont icon-github" title=github></a>
 <a href=https://weibo.com/1825990963/profile class="iconfont icon-weibo" title=weibo></a>
 <a href=https://www.douban.com/people/chafel/ class="iconfont icon-douban" title=douban></a>
 <a href=https://www.instagram.com/sunchaofei/ class="iconfont icon-instagram" title=instagram></a>
 <a href=https://space.bilibili.com/892261 class="iconfont icon-bilibili" title=bilibili></a>
-<a href=https://chaofei.tech/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
-</div>
-<div class=copyright>
-<span class=power-by>
-由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
-</span>
+<a href=https://chaofei.tech/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
 <span class=division>|</span>
-<span class=theme-info>
-主题 -
-<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
-</span>
-<div class=busuanzi-footer>
-<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span><div class=busuanzi-footer><span id=busuanzi_container_site_pv>本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次</span>
 <span class=division>|</span>
-<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
-</div>
-<span class=copyright-year>
-&copy;
+<span id=busuanzi_container_site_uv>本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人</span></div><span class=copyright-year>&copy;
 2017 -
-2022<span class=heart><i class="iconfont icon-heart"></i></span><span>chaofeis</span>
-</span>
-</div>
-</footer>
-<div class=back-to-top id=back-to-top>
-<i class="iconfont icon-up"></i>
-</div>
-</div>
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>chaofeis</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
 <script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
 <script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
-<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
-</body>
-</html>
+<script type=text/javascript src=/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js></script></body></html>
