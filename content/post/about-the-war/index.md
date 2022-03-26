@@ -5,7 +5,7 @@ draft: false
 tags: ["thoughts"]
 categories: ["Life"]
 ---
-{{<figure src="cat-snow.JPG" width="40%" alt="cat">}}
+{{<figure src="cat-snow.JPG" width="300px" alt="cat">}}
 最近发生的事太糟心了，我像家里的小猫一样看着窗外的大雪纷飞。
 
 
