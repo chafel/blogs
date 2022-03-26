@@ -1,7 +1,9 @@
 ---
 title: "关于上个月的“雪”我想说些什么"
 date: 2022-03-26T19:39:25+08:00
-draft: true
+draft: false
+tags: ["thoughts"]
+categories: ["Life"]
 ---
 {{<figure src="cat-snow.JPG" width="40%" alt="cat">}}
 最近发生的事太糟心了，我像家里的小猫一样看着窗外的大雪纷飞。
@@ -48,5 +50,5 @@ _**保持对信息的筛选和过滤是如今我们最应该具备的素质。**
 没有什么比和平的丧失更能让我们没有安全感了，感谢中国和这个时代给予我们的，几十年的快速发展确实留下一些技术债，作为建设者的各位，都应该多读书、掌握科学精神和独立思辨，相信都会变好的~
 
 {{% admonition example %}}
-本文首发于公众号 v2talk [阅读原文]()
+本文首发于公众号 v2talk [阅读原文](https://mp.weixin.qq.com/s/Dpsd5vMan8XS5bc8Ygw_dw)
 {{% /admonition %}}
