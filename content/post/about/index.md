@@ -32,7 +32,7 @@ autoCollapseToc: false
 - 乐于分享，我的 [利器分享](https://slides.com/chaofeisun/deck) 和 [Bookmarklet 分享](https://chafel.github.io/bookmarklets/)
 - 鼓捣过的一些样式和代码片段见 [CodePen](https://codepen.io/chaofei/)
 - 摄影爱好者，常用设备是索尼黑卡 5 和 iPhone
-- 影视爱好者，观影量 1000+，只为看到好故事，年轻时喜欢热血和动作，如今喜欢隐忍和回忆
+- 影视爱好者，观影量 2000+，只为看到好故事，年轻时喜欢热血和动作，如今喜欢隐忍和回忆
 - 有一个微信公众号:{{<figure src="wx.jpg" alt="微店" width="400px">}}
 - 老家在山西运城，家里种苹果 20+ 年，每年会在朋友同事圈帮家里卖点，不为赚钱只求早卖完父母少操心，你可以从以下地方下单：
   
