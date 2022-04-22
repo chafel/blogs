@@ -100,7 +100,9 @@ console.log(result)
 // VM101:17 {color: 'yellow'}
 ```
 
-理解到这里我们的问题再结合下面这几个推荐阅读就了然了：
+{{<figure src="chromium.jpeg" width="500px" alt="chromium">}}
+
+注意以上发生在 Blink 的 style 内联过程在实际情况中必然更复杂，以上只是简化理解的伪代码，但理解到这里我们的问题再结合下面这几个推荐阅读就了然了：
 1. https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969
 2. https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
 3. https://web.dev/critical-rendering-path-render-tree-construction/
