@@ -1,0 +1,49 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>浏览器调试 hover 后展示元素的技巧 - chaofeis - 一个年轻人的博客站</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="chaofeis"><meta name=description content="场景 前端经常会碰到需要调试 ToolTip、Dropdown 这类事件控制元素显示隐藏的场景，令人抓狂的是调试动态显示的元素时鼠标移到控制台它就"><meta name=keywords content="chafel,chaofeis,chaofei"><meta name=generator content="Hugo 0.101.0 with theme even"><link rel=canonical href=https://chaofei.tech/post/inspect-hover-element/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="浏览器调试 hover 后展示元素的技巧"><meta property="og:description" content="场景 前端经常会碰到需要调试 ToolTip、Dropdown 这类事件控制元素显示隐藏的场景，令人抓狂的是调试动态显示的元素时鼠标移到控制台它就"><meta property="og:type" content="article"><meta property="og:url" content="https://chaofei.tech/post/inspect-hover-element/"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-07-01T12:38:48+08:00"><meta property="article:modified_time" content="2022-07-01T12:38:48+08:00"><meta itemprop=name content="浏览器调试 hover 后展示元素的技巧"><meta itemprop=description content="场景 前端经常会碰到需要调试 ToolTip、Dropdown 这类事件控制元素显示隐藏的场景，令人抓狂的是调试动态显示的元素时鼠标移到控制台它就"><meta itemprop=datePublished content="2022-07-01T12:38:48+08:00"><meta itemprop=dateModified content="2022-07-01T12:38:48+08:00"><meta itemprop=wordCount content="534"><meta itemprop=keywords content="Development,css,"><meta name=twitter:card content="summary"><meta name=twitter:title content="浏览器调试 hover 后展示元素的技巧"><meta name=twitter:description content="场景 前端经常会碰到需要调试 ToolTip、Dropdown 这类事件控制元素显示隐藏的场景，令人抓狂的是调试动态显示的元素时鼠标移到控制台它就"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>chaofeis</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/post/about/><li class=mobile-menu-item>About</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>chaofeis</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/post/about/>About</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>浏览器调试 hover 后展示元素的技巧</h1><div class=post-meta><span class=post-time>2022-07-01</span><div class=post-category><a href=/categories/development/>Development</a></div><span class=more-meta>约 534 字</span>
+<span class=more-meta>预计阅读 2 分钟</span>
+<span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#场景>场景</a></li><li><a href=#方法>方法</a><ul><li><a href=#方法0>方法0</a></li><li><a href=#方法1>方法1</a></li><li><a href=#方法2>方法2</a></li><li><a href=#方法3>方法3</a></li><li><a href=#方法4>方法4</a></li></ul></li><li><a href=#总结>总结</a></li></ul></li></ul></nav></div></div><div class=post-content><h2 id=场景>场景</h2><p>前端经常会碰到需要调试 ToolTip、Dropdown 这类事件控制元素显示隐藏的场景，令人抓狂的是调试动态显示的元素时鼠标移到控制台它就消失了😮‍💨</p><h2 id=方法>方法</h2><h3 id=方法0>方法0</h3><p>开发时在代码里 visible=&lsquo;true&rsquo; 让这个元素一直展示就可以了。但今天我们探讨的是在包括线上的场景下，都想所见即所得地去调试。</p><h3 id=方法1>方法1</h3><p>因为鼠标离开后元素就隐藏了，那我们只要重新触发 mouseover 事件即可：</p><pre tabindex=0><code>$0.dispatchEvent(
+    new MouseEvent(&#39;mouseover&#39;, {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+    })
+);
+</code></pre><p>Chrome 提供了这个操作的快捷方式：
+<img src=./1.png alt="debug with status"></p><h3 id=方法2>方法2</h3><p>利用 JavaScript 单线程特性：
+<img src=./2.png alt="debug with control panel"></p><h3 id=方法3>方法3</h3><p>添加全局事件监听方便断点触发：</p><pre tabindex=0><code>handler = (e) =&gt; {
+    if (e.key === &#39;Enter&#39;) debugger;
+};
+document.addEventListener(&#39;keydown&#39;, handler);
+</code></pre><p>这样在 hover 之后按回车键即可。</p><h3 id=方法4>方法4</h3><p>理论上可以利用 Chrome 监听 DOM 改动加断点的方法，但这个方法不具备操作性：
+<img src=./3.png alt="debug with control panel">
+还有事件监听器断点：</p><ol><li>打开控制台后在 sources 标签下有个 EventListener Breakpoint，在里面找到 mouse 下对应的事件，比如 mouseenter 打勾；</li><li>在页面去触发该事件，有可能会有别的事件同时触发，不是自己需要的跳过即可；</li><li>当你要的事件触发，就可以尽情调试你要的元素了。</li></ol><p><img src=./4.png alt="debug with control panel">
+但这两种会受到自身或者别的元素事件干扰，要找到你要调试的元素比较困难，不推荐！</p><h2 id=总结>总结</h2><p>推荐简单快捷的方法2和3，为了进一步提高效率，我做了这个 bookmarklet ：<a href="javascript:(function()%7Bdocument.addEventListener('keydown'%2C%20function(e)%7Bif%20(e.key%20%3D%3D%3D%20'Enter')%20%20debugger%3B%7D)%7D)()">enter keydown to debugger</a> ，拖动👈这个链接到你的浏览器书签栏即可。任何时候想要 debugger 点击一下即可，然后在页面上按回车键即可触发。</p><p>更多的常用快捷 bookmarklet 在 <a href=https://chafel.github.io/bookmarklets/>https://chafel.github.io/bookmarklets/</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>chaofeis</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2022-07-01</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/development/>Development</a>
+<a href=/tags/css/>css</a></div><nav class=post-nav><a class=prev href=/post/cognitive-iteration/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">认知迭代</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/understanding-css-proximity-principle/><span class="next-text nav-default">理解 CSS 中的就近原则</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:chaofeis@email.com class="iconfont icon-email" title=email></a>
+<a href=https://twitter.com/chaofeis class="iconfont icon-twitter" title=twitter></a>
+<a href=https://github.com/chafel class="iconfont icon-github" title=github></a>
+<a href=https://weibo.com/1825990963/profile class="iconfont icon-weibo" title=weibo></a>
+<a href=https://www.douban.com/people/chafel/ class="iconfont icon-douban" title=douban></a>
+<a href=https://www.instagram.com/sunchaofei/ class="iconfont icon-instagram" title=instagram></a>
+<a href=https://space.bilibili.com/892261 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://chaofei.tech/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span><div class=busuanzi-footer><span id=busuanzi_container_site_pv>本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次</span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv>本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人</span></div><span class=copyright-year>&copy;
+2017 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>chaofeis</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script></body></html>
