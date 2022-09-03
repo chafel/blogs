@@ -10,6 +10,12 @@ draft: false
 weight: 50
 ---
 
+### 2022.08.02
+>When there is only one single-line text input field in a form, the user agent should accept Enter in that field as a request to submit the form.
+>https://www.w3.org/MarkUp/html-spec/html-spec_8.html#SEC8.2
+
+当 form 只有一个 input 时，UA 应该接受 Enter 键来提交表单；而默认表单提交行为是刷新页面。所以当我们使用原生写法或者某些组件库（如 Element UI）时就会碰到表单中一个输入框时回车页面刷新的古怪行为。
+
 ### 2022.06.02
 之前治理了一些业务的线上异常，但是修改完成之后异常率下降缓慢。所以本周排查了一下，发现了很严重的缓存问题，也就是有很多用户访问的是旧版本代码。
 通常前端项目不会给入口文件 index.html 加 hash 值，也就不会触发强制更新。在浏览器端依赖的是 `Cache Control` 头来标识缓存策略。观察了我们的项目只携带了 `Etag` ，那么在没有指定明确策略的情况下浏览器怎么缓存呢？
