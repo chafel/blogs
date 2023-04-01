@@ -6,7 +6,7 @@ keywords: ["认知迭代", "Cognitive Iteration"]
 description: "认知迭代"
 tags: ["认知迭代", "work"]
 categories: ["认知迭代"]
-draft: false
+draft: true
 weight: 50
 ---
 
