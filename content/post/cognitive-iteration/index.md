@@ -1,7 +1,7 @@
 ---
 title: "认知迭代"
 date: 2022-06-02T10:12:04+08:00
-lastmod: 2022-04-14T17:55:52+08:00
+lastmod: 2022-05-04T01:05:52+08:00
 keywords: ["认知迭代", "Cognitive Iteration"]
 description: "认知迭代"
 tags: ["认知迭代", "work"]
@@ -9,6 +9,9 @@ categories: ["认知迭代"]
 draft: false
 weight: 50
 ---
+
+### 2023.05.04
+假期尝试了 Astro 并发布了 demo 到 [Netlify](https://chaofei.netlify.app/)，尝试下来感觉比 Hugo 要灵活一些， island 的方式能像微前端一样无缝衔接别的技术栈，组装式的思维值得继续学习！
 
 ### 2023.04.14
 读《你的灯还亮着吗？》很有收获，问题是什么？就是现状与预期之间的差距。
