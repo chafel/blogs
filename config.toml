@@ -62,6 +62,8 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   # 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.
   gitRepo = ""
 
+  comment = true
+
 #   site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
   logoTitle = "chaofeis"        # default: the title value    # 默认值: 上面设置的title值
   keywords = ["chafel", "chaofeis", "chaofei"]
@@ -147,11 +149,11 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 #     owner = ""              # Your GitHub ID
 #     repo = ""               # The repo to store comments
 #
-#   [params.gitalk]           # Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk
-#     owner = ""              # Your GitHub ID
-#     repo = ""               # The repo to store comments
-#     clientId = ""           # Your client ID
-#     clientSecret = ""       # Your client secret
+[params.gitalk]           # Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk
+  owner = "chafel"              # Your GitHub ID
+  repo = "blog-comments"               # The repo to store comments
+  clientId = "fcd316605d4afce68a56"           # Your client ID
+  clientSecret = "96edd6322de706670572ed894c30712c03826be5"       # Your client secret
 
   # Valine.
   # You can get your appid and appkey from https://leancloud.cn
