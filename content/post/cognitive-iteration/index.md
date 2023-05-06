@@ -1,7 +1,7 @@
 ---
 title: "认知迭代"
 date: 2022-06-02T10:12:04+08:00
-lastmod: 2022-05-04T01:05:52+08:00
+lastmod: 2022-05-06T18:41:52+08:00
 keywords: ["认知迭代", "Cognitive Iteration"]
 description: "认知迭代"
 tags: ["认知迭代", "work"]
@@ -9,6 +9,15 @@ categories: ["认知迭代"]
 draft: false
 weight: 50
 ---
+
+### 2023.05.06
+随着框架从单一架构转向可组合架构，框架正在向服务端渲染优先转变，即 composable architecture。
+组装式因其多技术栈兼容、渐进式渲染、业务隔离和复用等特点必然会随着云厂商（Netlify和Vercel等）基础设施的完善而在建站领域引领未来；而随着 React 的 Server Component 和 webpack 5 的 module federation应用，在 SPA 场景也会有不错的推广，比如不同系统业务的复用、注重首屏性能的单系统分区块的渐进式渲染。
+如果今天要建站：
+- 内容向的轻量级站点：Astro+MDX 首选，其次 Hugo+Markdown
+- 交互式的首选 JAMStack，因为 combining the rich interactivity of client-side apps with the improved performance of traditional server rendering，其次 Next.js 和 Nuxt.js。
+再加上 [database in broswer](https://stopa.io/post/279) 就是面向未来的架构了，最近 Vercel 也发布了 [对应产品](https://mp.weixin.qq.com/s?__biz=MzI3NTM5NDgzOA==&mid=2247511468&idx=1&sn=3b735276f3b4ce6e4c584a2e5ac9f7f2&chksm=eb0795d5dc701cc31f69e00e2dbc4468620bba049dee8db92ed450cdbce6f317094e17c7fcc3&mpshare=1&scene=23&srcid=0505CCeaY50GbbG6YS7Erout&sharer_sharetime=1683275000469&sharer_shareid=4b1293dd35e2a8278b8488a814a4e481#rd)。
+
 
 ### 2023.05.04
 假期尝试了 Astro 并发布了 demo 到 [Netlify](https://chaofei.netlify.app/)，尝试下来感觉比 Hugo 要灵活一些， island 的方式能像微前端一样无缝衔接别的技术栈，组装式的思维值得继续学习！
