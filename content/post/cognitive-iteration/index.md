@@ -1,7 +1,7 @@
 ---
 title: "认知迭代"
 date: 2022-06-02T10:12:04+08:00
-lastmod: 2022-05-06T18:41:52+08:00
+lastmod: 2022-05-12T20:41:52+08:00
 keywords: ["认知迭代", "Cognitive Iteration"]
 description: "认知迭代"
 tags: ["认知迭代", "work"]
@@ -9,6 +9,31 @@ categories: ["认知迭代"]
 draft: false
 weight: 50
 ---
+
+### 2023.05.12
+
+_关于 http code 302 和 307_
+
+本周遇到了一个怪问题，直接域名发起 POST 请求服务端一直接收到空的 body，在机器上 curl localhost 却正常；尝试带上 `http://` 返回 302，再尝试 `https://` 也正常了。原因在于直接域名请求会被当成 http 到服务器 80 端口，再 302 跳转到 443 端口，这时就会将 POST 请求变成 GET 请求，丢失掉 body。以下为参考：
+
+The only difference between 307 and 302 is that 307 guarantees that the method and the body will not be changed when the redirected request is made. With 302, some old clients were incorrectly changing the method to GET: the behavior with non-GET methods and 302 is then unpredictable on the Web, whereas the behavior with 307 is predictable. For GET requests, their behavior is identical.
+EXPECTED for 302: redirect uses same request method POST on NEW_URL
+```
+CLIENT POST OLD_URL -> SERVER 302 NEW_URL -> CLIENT POST NEW_URL
+```
+ACTUAL for 302, 303: redirect changes request method from POST to GET on NEW_URL
+```
+CLIENT POST OLD_URL -> SERVER 302 NEW_URL -> CLIENT GET NEW_URL (redirect uses GET)
+CLIENT POST OLD_URL -> SERVER 303 NEW_URL -> CLIENT GET NEW_URL (redirect uses GET)
+```
+ACTUAL for 307: redirect uses same request method POST on NEW_URL
+```
+CLIENT POST OLD_URL -> SERVER 307 NEW_URL -> CLIENT POST NEW_URL
+```
+
+{{% admonition example %}}
+curl 看不出的问题可以使用 wget 可以看到跳转过程，帮助排查定位问题。
+{{% /admonition %}}
 
 ### 2023.05.06
 随着框架从单一架构转向可组合架构，框架正在向服务端渲染优先转变，即 composable architecture。

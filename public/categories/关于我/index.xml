@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>关于我 on chaofeis - 一个年轻人的博客站</title><link>https://chaofei.tech/categories/%E5%85%B3%E4%BA%8E%E6%88%91/</link><description>Recent content in 关于我 on chaofeis - 一个年轻人的博客站</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Aug 2017 21:38:52 +0800</lastBuildDate><atom:link href="https://chaofei.tech/categories/%E5%85%B3%E4%BA%8E%E6%88%91/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://chaofei.tech/post/about/</link><pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate><guid>https://chaofei.tech/post/about/</guid><description>一个热情但没有才华的年轻人。 前端开发者，2014 年入行，经历过 BearyChat 和 DiDi，如今在 MT 追求效率，喜欢做工具，开发了几个 Chrome 插件： iRead Rect-selector EYE 拥抱开源，</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>关于我 on chaofeis - 一个年轻人的博客站</title>
+    <link>https://chaofei.tech/categories/%E5%85%B3%E4%BA%8E%E6%88%91/</link>
+    <description>Recent content in 关于我 on chaofeis - 一个年轻人的博客站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 Aug 2017 21:38:52 +0800</lastBuildDate><atom:link href="https://chaofei.tech/categories/%E5%85%B3%E4%BA%8E%E6%88%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://chaofei.tech/post/about/</link>
+      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      
+      <guid>https://chaofei.tech/post/about/</guid>
+      <description>一个热情但没有才华的年轻人。 前端开发者，2014 年入行，经历过 BearyChat 和 DiDi，如今在 MT 追求效率，喜欢做工具，开发了几个 Chrome 插件： iRead Rect-selector EYE 拥抱开源，</description>
+    </item>
+    
+  </channel>
+</rss>
