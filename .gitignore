@@ -1,3 +1,5 @@
 */.DS_Store
 /public/*
 public/**
+.DS_Store
+themes/even
