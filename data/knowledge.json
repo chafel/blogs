@@ -1,0 +1,2507 @@
+{
+  "categories": [
+    {
+      "id": "engineering",
+      "name": "编程与工程",
+      "description": "理解软件复杂性、架构取舍与工程协作。",
+      "items": [
+        {
+          "id": "brooks-law",
+          "name": "布鲁克斯定律",
+          "english": "Brooks's Law",
+          "aliases": [
+            "人月神话"
+          ],
+          "type": "定律",
+          "description": "向已延期的软件项目增派人手，可能因培训和沟通成本进一步延期。",
+          "url": "/knowledge/brooks-law/",
+          "sources": [
+            "https://www.cs.cmu.edu/~15712/papers/mythicalmanmonth00fred.pdf"
+          ]
+        },
+        {
+          "id": "conway-law",
+          "name": "康威定律",
+          "english": "Conway's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "系统设计常映射组织的沟通结构，架构调整也需要组织配合。",
+          "url": "/knowledge/conway-law/",
+          "sources": [
+            "https://www.melconway.com/Home/Conways_Law.html"
+          ]
+        },
+        {
+          "id": "amdahl-law",
+          "name": "阿姆达尔定律",
+          "english": "Amdahl's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "固定工作量下，并行加速的上限受无法并行的部分限制。",
+          "url": "/knowledge/amdahl-law/",
+          "sources": [
+            "https://doi.org/10.1145/1465482.1465560"
+          ]
+        },
+        {
+          "id": "gustafson-law",
+          "name": "古斯塔夫森定律",
+          "english": "Gustafson's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "允许工作量随资源扩大时，并行计算的收益可不同于固定规模估算。",
+          "url": "/knowledge/gustafson-law/",
+          "sources": [
+            "https://doi.org/10.1145/42411.42415"
+          ]
+        },
+        {
+          "id": "moore-law",
+          "name": "摩尔定律",
+          "english": "Moore's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "芯片晶体管数量增长的历史经验观察，并非永恒的物理规律。",
+          "url": "/knowledge/moore-law/",
+          "sources": [
+            "https://www.cs.cmu.edu/~18742/papers/Moore1965.pdf"
+          ]
+        },
+        {
+          "id": "hyrum-law",
+          "name": "海勒姆定律",
+          "english": "Hyrum's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "用户足够多时，系统几乎任何可观察行为都可能被依赖。",
+          "url": "/knowledge/hyrum-law/",
+          "sources": [
+            "https://www.hyrumslaw.com/"
+          ]
+        },
+        {
+          "id": "leaky-abstractions",
+          "name": "抽象泄漏定律",
+          "english": "Law of Leaky Abstractions",
+          "aliases": [],
+          "type": "定律",
+          "description": "抽象无法完全隐藏底层细节，边界情况仍需理解实际机制。",
+          "url": "/knowledge/leaky-abstractions/",
+          "sources": [
+            "https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/"
+          ]
+        },
+        {
+          "id": "cap-theorem",
+          "name": "CAP 定理",
+          "english": "CAP Theorem",
+          "aliases": [],
+          "type": "定理",
+          "description": "发生网络分区时，分布式系统无法同时保证特定定义下的一致性与可用性。",
+          "url": "/knowledge/cap-theorem/",
+          "sources": [
+            "https://doi.org/10.1145/564585.564601"
+          ]
+        },
+        {
+          "id": "pacelc",
+          "name": "PACELC 模型",
+          "english": "PACELC",
+          "aliases": [],
+          "type": "模型",
+          "description": "分区时权衡可用性与一致性，正常运行时还需权衡延迟与一致性。",
+          "url": "/knowledge/pacelc/",
+          "sources": [
+            "https://dbmsmusings.blogspot.com/2010/04/problems-with-cap-and-yahoos-little.html"
+          ]
+        },
+        {
+          "id": "postel-law",
+          "name": "波斯特尔法则",
+          "english": "Postel's Law",
+          "aliases": [
+            "健壮性原则"
+          ],
+          "type": "原则",
+          "description": "主张发送严格、接收宽容的兼容原则；过度宽容也会累积风险。",
+          "url": "/knowledge/postel-law/",
+          "sources": [
+            "https://www.rfc-editor.org/rfc/rfc793",
+            "https://www.rfc-editor.org/rfc/rfc9413"
+          ]
+        },
+        {
+          "id": "least-astonishment",
+          "name": "最小惊讶原则",
+          "english": "Principle of Least Astonishment",
+          "aliases": [],
+          "type": "原则",
+          "description": "让界面和程序行为符合使用者的合理预期，降低理解成本。",
+          "url": "/knowledge/least-astonishment/",
+          "sources": [
+            "https://www.nngroup.com/articles/consistency-and-standards/"
+          ]
+        },
+        {
+          "id": "kiss",
+          "name": "KISS 原则",
+          "english": "Keep It Simple",
+          "aliases": [
+            "保持简单"
+          ],
+          "type": "原则",
+          "description": "在满足目标的前提下减少不必要的复杂性，优先选择易理解方案。",
+          "url": "/knowledge/kiss/",
+          "sources": [
+            "https://www.lockheedmartin.com/en-us/news/features/history/johnson.html"
+          ]
+        },
+        {
+          "id": "dry",
+          "name": "DRY 原则",
+          "english": "Don't Repeat Yourself",
+          "aliases": [
+            "不要重复自己"
+          ],
+          "type": "原则",
+          "description": "让同一知识有清晰的单一表达，避免重复规则发生分歧。",
+          "url": "/knowledge/dry/",
+          "sources": [
+            "https://media.pragprog.com/titles/tpp20/dry.pdf"
+          ]
+        },
+        {
+          "id": "yagni",
+          "name": "YAGNI 原则",
+          "english": "You Aren't Gonna Need It",
+          "aliases": [],
+          "type": "原则",
+          "description": "暂缓尚未证实必要的功能，避免为想象中的需求增加负担。",
+          "url": "/knowledge/yagni/",
+          "sources": [
+            "https://martinfowler.com/bliki/Yagni.html"
+          ]
+        },
+        {
+          "id": "solid",
+          "name": "SOLID 原则",
+          "english": "SOLID Principles",
+          "aliases": [],
+          "type": "原则",
+          "description": "用职责、扩展、替换、接口与依赖原则辅助面向对象设计。",
+          "url": "/knowledge/solid/",
+          "sources": [
+            "https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html"
+          ]
+        },
+        {
+          "id": "demeter-law",
+          "name": "迪米特法则",
+          "english": "Law of Demeter",
+          "aliases": [
+            "最少知识原则"
+          ],
+          "type": "原则",
+          "description": "限制对象对远处细节的了解，减少跨层依赖与修改的连锁影响。",
+          "url": "/knowledge/demeter-law/",
+          "sources": [
+            "https://www2.ccs.neu.edu/research/demeter/DemeterJava/use/lguide/html/Mainhtml/Mainhtml.html"
+          ]
+        },
+        {
+          "id": "separation-of-concerns",
+          "name": "关注点分离",
+          "english": "Separation of Concerns",
+          "aliases": [],
+          "type": "原则",
+          "description": "按不同职责拆解系统，让各部分可以相对独立地理解和修改。",
+          "url": "/knowledge/separation-of-concerns/",
+          "sources": [
+            "https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD447.html"
+          ]
+        },
+        {
+          "id": "end-to-end",
+          "name": "端到端原则",
+          "english": "End-to-End Principle",
+          "aliases": [],
+          "type": "原则",
+          "description": "某些正确性保证需要在通信端点完成，底层机制只能提供辅助。",
+          "url": "/knowledge/end-to-end/",
+          "sources": [
+            "https://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf"
+          ]
+        },
+        {
+          "id": "technical-debt",
+          "name": "技术债务",
+          "english": "Technical Debt",
+          "aliases": [],
+          "type": "模型",
+          "description": "用债务比喻短期设计取舍带来的未来维护成本，帮助讨论偿还时机。",
+          "url": "/knowledge/technical-debt/",
+          "sources": [
+            "https://c2.com/doc/oopsla92.html",
+            "https://martinfowler.com/bliki/TechnicalDebt.html"
+          ]
+        },
+        {
+          "id": "chesterton-fence",
+          "name": "切斯特顿栅栏",
+          "english": "Chesterton's Fence",
+          "aliases": [],
+          "type": "原则",
+          "description": "移除旧规则前先理解它存在的原因，再评估是否仍有必要。",
+          "url": "/knowledge/chesterton-fence/",
+          "sources": [
+            "https://catholiclibrary.org/library/view?chunk.id=00000011&docId=%2FContemporary-EN%2FXCT.165.html"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thinking",
+      "name": "思考与决策",
+      "description": "澄清假设、比较方案，让判断更有依据。",
+      "items": [
+        {
+          "id": "first-principles",
+          "name": "第一性原理",
+          "english": "First Principles Thinking",
+          "aliases": [],
+          "type": "方法",
+          "description": "回到可成立的基础事实与约束，重新推导问题的解法。",
+          "url": "/knowledge/first-principles/",
+          "sources": [
+            "https://classics.mit.edu/Aristotle/posterior.html"
+          ]
+        },
+        {
+          "id": "occam-razor",
+          "name": "奥卡姆剃刀",
+          "english": "Occam's Razor",
+          "aliases": [],
+          "type": "原则",
+          "description": "解释力相近时优先考虑假设较少的解释，简洁本身并不证明正确。",
+          "url": "/knowledge/occam-razor/",
+          "sources": [
+            "https://plato.stanford.edu/entries/simplicity/"
+          ]
+        },
+        {
+          "id": "hanlon-razor",
+          "name": "汉隆剃刀",
+          "english": "Hanlon's Razor",
+          "aliases": [],
+          "type": "原则",
+          "description": "解释他人失误时先考虑疏忽和信息差，避免过早归因于恶意。",
+          "url": "/knowledge/hanlon-razor/",
+          "sources": [
+            "https://www.catb.org/jargon/html/H/Hanlons-Razor.html"
+          ]
+        },
+        {
+          "id": "inversion",
+          "name": "逆向思考",
+          "english": "Inversion",
+          "aliases": [
+            "反向思考"
+          ],
+          "type": "方法",
+          "description": "从失败条件或相反目标倒推，发现正向规划容易忽视的限制。",
+          "url": "/knowledge/inversion/",
+          "sources": [
+            "https://www.stripe.press/poor-charlies-almanack/fullbook"
+          ]
+        },
+        {
+          "id": "second-order-thinking",
+          "name": "二阶思维",
+          "english": "Second-Order Thinking",
+          "aliases": [],
+          "type": "方法",
+          "description": "除直接结果外，继续追问后续反应、激励变化与长期影响。",
+          "url": "/knowledge/second-order-thinking/",
+          "sources": [
+            "https://www.oaktreecapital.com/docs/default-source/memos/2015-09-09-its-not-easy.pdf"
+          ]
+        },
+        {
+          "id": "mece",
+          "name": "MECE 原则",
+          "english": "Mutually Exclusive, Collectively Exhaustive",
+          "aliases": [
+            "相互独立完全穷尽"
+          ],
+          "type": "原则",
+          "description": "拆分问题时争取相互独立且整体覆盖，并检查分类边界。",
+          "url": "/knowledge/mece/",
+          "sources": [
+            "https://www.mckinsey.com/alumni/news-and-events/global-news/alumni-news/barbara-minto-mece-i-invented-it-so-i-get-to-say-how-to-pronounce-it"
+          ]
+        },
+        {
+          "id": "falsifiability",
+          "name": "可证伪性",
+          "english": "Falsifiability",
+          "aliases": [],
+          "type": "原则",
+          "description": "明确哪些观察会推翻主张，避免把任何结果都解释为支持。",
+          "url": "/knowledge/falsifiability/",
+          "sources": [
+            "https://plato.stanford.edu/entries/popper/"
+          ]
+        },
+        {
+          "id": "steelman",
+          "name": "钢人论证",
+          "english": "Steelmanning",
+          "aliases": [],
+          "type": "方法",
+          "description": "先准确构造对方论点的较强版本，再讨论分歧与证据。",
+          "url": "/knowledge/steelman/",
+          "sources": [
+            "https://www.penguin.co.uk/books/181880/intuition-pumps-and-other-tools-for-thinking-by-dennett-daniel-c/9780141970127"
+          ]
+        },
+        {
+          "id": "socratic-questioning",
+          "name": "苏格拉底式提问",
+          "english": "Socratic Questioning",
+          "aliases": [],
+          "type": "方法",
+          "description": "通过追问定义、理由、假设和反例，逐步澄清一个判断。",
+          "url": "/knowledge/socratic-questioning/",
+          "sources": [
+            "https://classics.mit.edu/Plato/euthyfro.html"
+          ]
+        },
+        {
+          "id": "thought-experiment",
+          "name": "思想实验",
+          "english": "Thought Experiment",
+          "aliases": [],
+          "type": "方法",
+          "description": "构造受控的假想情境来检验推理，结论仍需留意现实假设。",
+          "url": "/knowledge/thought-experiment/",
+          "sources": [
+            "https://plato.stanford.edu/entries/thought-experiment/"
+          ]
+        },
+        {
+          "id": "counterfactual",
+          "name": "反事实思考",
+          "english": "Counterfactual Thinking",
+          "aliases": [],
+          "type": "方法",
+          "description": "比较如果某条件不同会怎样，帮助分析原因与行动选择。",
+          "url": "/knowledge/counterfactual/",
+          "sources": [
+            "https://dash.harvard.edu/entities/publication/73120378-82c0-6bd4-e053-0100007fdf3b"
+          ]
+        },
+        {
+          "id": "map-territory",
+          "name": "地图不等于疆域",
+          "english": "The Map Is Not the Territory",
+          "aliases": [],
+          "type": "原则",
+          "description": "模型是现实的简化表达，使用时要检查被省略的重要信息。",
+          "url": "/knowledge/map-territory/",
+          "sources": [
+            "https://openlibrary.org/books/OL24876034M/Science_and_sanity"
+          ]
+        },
+        {
+          "id": "circle-of-competence",
+          "name": "能力圈",
+          "english": "Circle of Competence",
+          "aliases": [],
+          "type": "模型",
+          "description": "区分真正理解的领域与知识盲区，让决策匹配自己的判断能力。",
+          "url": "/knowledge/circle-of-competence/",
+          "sources": [
+            "https://www.berkshirehathaway.com/letters/1996.html"
+          ]
+        },
+        {
+          "id": "opportunity-cost",
+          "name": "机会成本",
+          "english": "Opportunity Cost",
+          "aliases": [],
+          "type": "模型",
+          "description": "选择一个方案时，同时考虑因此放弃的最佳替代方案价值。",
+          "url": "/knowledge/opportunity-cost/",
+          "sources": [
+            "https://openstax.org/books/principles-economics-3e/pages/2-1-how-individuals-make-choices-based-on-their-budget-constraint"
+          ]
+        },
+        {
+          "id": "marginal-analysis",
+          "name": "边际分析",
+          "english": "Marginal Analysis",
+          "aliases": [],
+          "type": "方法",
+          "description": "比较下一单位投入的额外收益与成本，而不只看已有总量。",
+          "url": "/knowledge/marginal-analysis/",
+          "sources": [
+            "https://openstax.org/books/principles-economics-3e/pages/2-3-confronting-objections-to-the-economic-approach"
+          ]
+        },
+        {
+          "id": "decision-tree",
+          "name": "决策树分析",
+          "english": "Decision Tree Analysis",
+          "aliases": [],
+          "type": "方法",
+          "description": "把选择、事件概率与结果画成分支，显式比较不同路径。",
+          "url": "/knowledge/decision-tree/",
+          "sources": [
+            "https://www.ocw.mit.edu/courses/ids-333-risk-and-decision-analysis-fall-2021/pages/homework-3/",
+            "https://store.hbr.org/product/decision-trees-for-decision-making/64410"
+          ]
+        },
+        {
+          "id": "expected-utility",
+          "name": "期望效用理论",
+          "english": "Expected Utility Theory",
+          "aliases": [],
+          "type": "理论",
+          "description": "结合结果概率与个人效用评估选择，模型依赖一组理性公理。",
+          "url": "/knowledge/expected-utility/",
+          "sources": [
+            "https://plato.stanford.edu/entries/rationality-normative-utility/"
+          ]
+        },
+        {
+          "id": "bounded-rationality",
+          "name": "有限理性",
+          "english": "Bounded Rationality",
+          "aliases": [],
+          "type": "理论",
+          "description": "人在时间、信息和认知能力受限时，常寻求满意而非最优解。",
+          "url": "/knowledge/bounded-rationality/",
+          "sources": [
+            "https://academic.oup.com/qje/article-abstract/69/1/99/1919737"
+          ]
+        },
+        {
+          "id": "ooda",
+          "name": "OODA 循环",
+          "english": "Observe–Orient–Decide–Act",
+          "aliases": [
+            "观察—判断—决策—行动"
+          ],
+          "type": "方法",
+          "description": "在观察、判断、决策与行动之间不断迭代，依据反馈更新对情境的理解。",
+          "url": "/knowledge/ooda/",
+          "sources": [
+            "https://ooda.de/media/john_boyd_-_the_essence_of_winning_and_losing.pdf",
+            "https://www.govinfo.gov/content/pkg/GOVPUB-D301-PURL-gpo94257/pdf/GOVPUB-D301-PURL-gpo94257.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "probability",
+      "name": "概率与统计",
+      "description": "理解不确定性，识别数据与推断的边界。",
+      "items": [
+        {
+          "id": "bayes-theorem",
+          "name": "贝叶斯定理",
+          "english": "Bayes's Theorem",
+          "aliases": [
+            "贝叶斯更新"
+          ],
+          "type": "定理",
+          "description": "结合先验概率与新证据更新判断，结果取决于输入和模型假设。",
+          "url": "/knowledge/bayes-theorem/",
+          "sources": [
+            "https://plato.stanford.edu/entries/bayes-theorem/"
+          ]
+        },
+        {
+          "id": "law-large-numbers",
+          "name": "大数定律",
+          "english": "Law of Large Numbers",
+          "aliases": [],
+          "type": "定律",
+          "description": "在相应条件下，样本均值随样本增多趋近总体期望。",
+          "url": "/knowledge/law-large-numbers/",
+          "sources": [
+            "https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/resources/lecture-3-law-of-large-numbers-convergence/"
+          ]
+        },
+        {
+          "id": "central-limit-theorem",
+          "name": "中心极限定理",
+          "english": "Central Limit Theorem",
+          "aliases": [],
+          "type": "定理",
+          "description": "满足条件时，标准化的样本和或均值趋近正态分布。",
+          "url": "/knowledge/central-limit-theorem/",
+          "sources": [
+            "https://openstax.org/books/introductory-statistics-2e/pages/7-1-the-central-limit-theorem-for-sample-means-averages"
+          ]
+        },
+        {
+          "id": "monte-carlo",
+          "name": "蒙特卡洛方法",
+          "english": "Monte Carlo Method",
+          "aliases": [
+            "蒙特卡利",
+            "随机模拟"
+          ],
+          "type": "方法",
+          "description": "用重复随机抽样估计结果分布，模拟质量依赖输入与假设。",
+          "url": "/knowledge/monte-carlo/",
+          "sources": [
+            "https://www.ibm.com/think/topics/monte-carlo-simulation"
+          ]
+        },
+        {
+          "id": "expected-value",
+          "name": "数学期望",
+          "english": "Expected Value",
+          "aliases": [
+            "期望值"
+          ],
+          "type": "模型",
+          "description": "按概率加权可能结果，长期平均值不等于某次必然结果。",
+          "url": "/knowledge/expected-value/",
+          "sources": [
+            "https://openstax.org/books/introductory-statistics-2e/pages/4-2-mean-or-expected-value-and-standard-deviation"
+          ]
+        },
+        {
+          "id": "regression-to-mean",
+          "name": "均值回归",
+          "english": "Regression to the Mean",
+          "aliases": [],
+          "type": "效应",
+          "description": "极端观测后常出现较普通的观测，不一定是干预产生了效果。",
+          "url": "/knowledge/regression-to-mean/",
+          "sources": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC2540330/"
+          ]
+        },
+        {
+          "id": "simpson-paradox",
+          "name": "辛普森悖论",
+          "english": "Simpson's Paradox",
+          "aliases": [],
+          "type": "效应",
+          "description": "分组数据的趋势可能在合并后反转，需要检查分组结构。",
+          "url": "/knowledge/simpson-paradox/",
+          "sources": [
+            "https://doi.org/10.1111/j.2517-6161.1951.tb00088.x"
+          ]
+        },
+        {
+          "id": "survivorship-bias",
+          "name": "幸存者偏差",
+          "english": "Survivorship Bias",
+          "aliases": [],
+          "type": "效应",
+          "description": "只观察留下来的样本，可能忽略退出者而高估成功概率。",
+          "url": "/knowledge/survivorship-bias/",
+          "sources": [
+            "https://doi.org/10.1093/rfs/5.4.553"
+          ]
+        },
+        {
+          "id": "base-rate-neglect",
+          "name": "基准率忽视",
+          "english": "Base Rate Neglect",
+          "aliases": [],
+          "type": "效应",
+          "description": "判断个案时忽略总体发生率，容易误读特征或检测结果。",
+          "url": "/knowledge/base-rate-neglect/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/17835457/"
+          ]
+        },
+        {
+          "id": "selection-bias",
+          "name": "选择偏差",
+          "english": "Selection Bias",
+          "aliases": [],
+          "type": "效应",
+          "description": "样本进入观察的方式与研究对象有关时，推断可能系统性偏离。",
+          "url": "/knowledge/selection-bias/",
+          "sources": [
+            "https://www.hsph.harvard.edu/miguel-hernan/wp-content/uploads/sites/1268/2024/04/hernanrobins_WhatIf_26apr24.pdf"
+          ]
+        },
+        {
+          "id": "correlation-causation",
+          "name": "相关不等于因果",
+          "english": "Correlation Is Not Causation",
+          "aliases": [],
+          "type": "原则",
+          "description": "变量共同变化不代表直接因果，还要排查混杂和反向因果。",
+          "url": "/knowledge/correlation-causation/",
+          "sources": [
+            "https://statistics.berkeley.edu/tech-reports/408"
+          ]
+        },
+        {
+          "id": "confidence-interval",
+          "name": "置信区间",
+          "english": "Confidence Interval",
+          "aliases": [],
+          "type": "方法",
+          "description": "用重复抽样覆盖率刻画估计方法，不是固定参数落入区间的概率。",
+          "url": "/knowledge/confidence-interval/",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm",
+            "https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm"
+          ]
+        },
+        {
+          "id": "hypothesis-testing",
+          "name": "假设检验",
+          "english": "Hypothesis Testing",
+          "aliases": [],
+          "type": "方法",
+          "description": "在模型与零假设下评估数据相容程度，显著不等于影响重要。",
+          "url": "/knowledge/hypothesis-testing/",
+          "sources": [
+            "https://doi.org/10.1080/00031305.2016.1154108"
+          ]
+        },
+        {
+          "id": "multiple-comparisons",
+          "name": "多重比较问题",
+          "english": "Multiple Comparisons",
+          "aliases": [],
+          "type": "原则",
+          "description": "同时检验越多假设，误报风险越高，需要调整或独立验证。",
+          "url": "/knowledge/multiple-comparisons/",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm",
+            "https://itl.nist.gov/div898/handbook/prc/section4/prc473.htm"
+          ]
+        },
+        {
+          "id": "randomized-experiment",
+          "name": "随机对照实验",
+          "english": "Randomized Controlled Trial",
+          "aliases": [
+            "RCT",
+            "A/B 测试"
+          ],
+          "type": "方法",
+          "description": "随机分配处理以减少混杂影响，仍需检查执行与适用人群。",
+          "url": "/knowledge/randomized-experiment/",
+          "sources": [
+            "https://www.itl.nist.gov/div898/handbook/pri/section3/pri3.htm"
+          ]
+        },
+        {
+          "id": "bootstrap",
+          "name": "自助抽样法",
+          "english": "Bootstrap",
+          "aliases": [],
+          "type": "方法",
+          "description": "从已有样本反复重抽样估计不确定性，不能补救原样本的系统偏差。",
+          "url": "/knowledge/bootstrap/",
+          "sources": [
+            "https://doi.org/10.1214/aos/1176344552"
+          ]
+        },
+        {
+          "id": "sensitivity-analysis",
+          "name": "敏感性分析",
+          "english": "Sensitivity Analysis",
+          "aliases": [],
+          "type": "方法",
+          "description": "改变关键输入与假设，检查结论依赖哪些因素及其变化幅度。",
+          "url": "/knowledge/sensitivity-analysis/",
+          "sources": [
+            "https://arxiv.org/abs/1711.11359"
+          ]
+        },
+        {
+          "id": "power-law",
+          "name": "幂律分布",
+          "english": "Power Law",
+          "aliases": [],
+          "type": "模型",
+          "description": "用重尾关系描述部分规模现象，需检验数据而非仅凭外观认定。",
+          "url": "/knowledge/power-law/",
+          "sources": [
+            "https://arxiv.org/abs/0706.1062"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "investing",
+      "name": "投资与风险",
+      "description": "认识增长、估值与风险；模型不等于收益承诺。",
+      "items": [
+        {
+          "id": "compound-interest",
+          "name": "复利",
+          "english": "Compound Interest",
+          "aliases": [
+            "利滚利"
+          ],
+          "type": "模型",
+          "description": "收益再投入后也参与后续计息，实际增长受收益率与成本影响。",
+          "url": "/knowledge/compound-interest/",
+          "sources": [
+            "https://www.investor.gov/introduction-investing/investing-basics/glossary/compound-interest"
+          ]
+        },
+        {
+          "id": "kelly-criterion",
+          "name": "凯利准则",
+          "english": "Kelly Criterion",
+          "aliases": [
+            "凯利公式"
+          ],
+          "type": "方法",
+          "description": "在特定概率与赔率假设下追求长期对数增长，估计误差可能放大风险。",
+          "url": "/knowledge/kelly-criterion/",
+          "sources": [
+            "https://onlinelibrary.wiley.com/doi/10.1002/j.1538-7305.1956.tb03809.x"
+          ]
+        },
+        {
+          "id": "rule-of-72",
+          "name": "72 法则",
+          "english": "Rule of 72",
+          "aliases": [],
+          "type": "方法",
+          "description": "以七十二除以年化百分比粗估翻倍年数，仅适用于一定利率范围。",
+          "url": "/knowledge/rule-of-72/",
+          "sources": [
+            "https://www.investor.gov/additional-resources/information/youth/teachers-classroom-resources/what-compound-interest"
+          ]
+        },
+        {
+          "id": "diversification",
+          "name": "分散投资",
+          "english": "Diversification",
+          "aliases": [],
+          "type": "原则",
+          "description": "配置不同风险来源以降低集中风险，无法消除市场整体下跌风险。",
+          "url": "/knowledge/diversification/",
+          "sources": [
+            "https://www.investor.gov/introduction-investing/getting-started/asset-allocation"
+          ]
+        },
+        {
+          "id": "asset-allocation",
+          "name": "资产配置",
+          "english": "Asset Allocation",
+          "aliases": [],
+          "type": "方法",
+          "description": "依据期限、目标与风险承受能力确定不同资产的配置比例。",
+          "url": "/knowledge/asset-allocation/",
+          "sources": [
+            "https://www.investor.gov/additional-resources/general-resources/publications-research/info-sheets/beginners-guide-asset"
+          ]
+        },
+        {
+          "id": "rebalancing",
+          "name": "投资组合再平衡",
+          "english": "Portfolio Rebalancing",
+          "aliases": [],
+          "type": "方法",
+          "description": "按预定规则调整偏离的资产比例，并计入交易成本与税费。",
+          "url": "/knowledge/rebalancing/",
+          "sources": [
+            "https://syndication.finra.org/content/active-vs-passive-investing"
+          ]
+        },
+        {
+          "id": "dollar-cost-averaging",
+          "name": "定期定额投资",
+          "english": "Dollar-Cost Averaging",
+          "aliases": [
+            "定投"
+          ],
+          "type": "方法",
+          "description": "分期投入固定金额来分散买入时点，不保证获利或优于一次投入。",
+          "url": "/knowledge/dollar-cost-averaging/",
+          "sources": [
+            "https://www.investor.gov/introduction-investing/investing-basics/glossary/dollar-cost-averaging"
+          ]
+        },
+        {
+          "id": "margin-of-safety",
+          "name": "安全边际",
+          "english": "Margin of Safety",
+          "aliases": [],
+          "type": "原则",
+          "description": "为估值误差和不利变化预留空间，边际大小仍依赖估值质量。",
+          "url": "/knowledge/margin-of-safety/",
+          "sources": [
+            "https://www.berkshirehathaway.com/letters/1992.html"
+          ]
+        },
+        {
+          "id": "present-value",
+          "name": "现金流折现",
+          "english": "Discounted Cash Flow",
+          "aliases": [
+            "DCF"
+          ],
+          "type": "方法",
+          "description": "按折现率换算未来现金流价值，估值对增长与折现假设敏感。",
+          "url": "/knowledge/present-value/",
+          "sources": [
+            "https://pages.stern.nyu.edu/~adamodar/pdfiles/dcfallA.pdf"
+          ]
+        },
+        {
+          "id": "modern-portfolio-theory",
+          "name": "现代投资组合理论",
+          "english": "Modern Portfolio Theory",
+          "aliases": [
+            "MPT"
+          ],
+          "type": "理论",
+          "description": "利用收益、波动和相关性构造组合，结论受参数与模型假设限制。",
+          "url": "/knowledge/modern-portfolio-theory/",
+          "sources": [
+            "https://www.nobelprize.org/uploads/2018/06/markowitz-lecture.pdf"
+          ]
+        },
+        {
+          "id": "capm",
+          "name": "资本资产定价模型",
+          "english": "Capital Asset Pricing Model",
+          "aliases": [
+            "CAPM"
+          ],
+          "type": "模型",
+          "description": "用市场系统性风险解释预期收益，是依赖强假设的简化模型。",
+          "url": "/knowledge/capm/",
+          "sources": [
+            "https://www.nobelprize.org/prizes/economic-sciences/1990/press-release/"
+          ]
+        },
+        {
+          "id": "efficient-market",
+          "name": "有效市场假说",
+          "english": "Efficient Market Hypothesis",
+          "aliases": [
+            "EMH"
+          ],
+          "type": "理论",
+          "description": "研究价格反映信息的程度，不代表价格总正确或投资没有风险。",
+          "url": "/knowledge/efficient-market/",
+          "sources": [
+            "https://www.nobelprize.org/uploads/2018/06/fama-lecture.pdf"
+          ]
+        },
+        {
+          "id": "risk-return",
+          "name": "风险收益权衡",
+          "english": "Risk–Return Tradeoff",
+          "aliases": [],
+          "type": "原则",
+          "description": "较高预期收益通常伴随更大不确定性，承担风险不保证获得回报。",
+          "url": "/knowledge/risk-return/",
+          "sources": [
+            "https://www.investor.gov/additional-resources/information/youth/teachers-classroom-resources/risk-and-return"
+          ]
+        },
+        {
+          "id": "liquidity-risk",
+          "name": "流动性风险",
+          "english": "Liquidity Risk",
+          "aliases": [],
+          "type": "模型",
+          "description": "资产可能无法及时按合理价格变现，账面价值不等于可用现金。",
+          "url": "/knowledge/liquidity-risk/",
+          "sources": [
+            "https://syndication.finra.org/content/basics-selecting-investments"
+          ]
+        },
+        {
+          "id": "leverage-risk",
+          "name": "杠杆效应",
+          "english": "Financial Leverage",
+          "aliases": [],
+          "type": "效应",
+          "description": "借入资金会同时放大收益与亏损，并增加偿付和被迫平仓压力。",
+          "url": "/knowledge/leverage-risk/",
+          "sources": [
+            "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-29"
+          ]
+        },
+        {
+          "id": "ruin-risk",
+          "name": "破产风险",
+          "english": "Risk of Ruin",
+          "aliases": [],
+          "type": "模型",
+          "description": "关注连续损失耗尽可用资本的可能，正期望也不能保证存续。",
+          "url": "/knowledge/ruin-risk/",
+          "sources": [
+            "https://ocw.mit.edu/courses/18-642-topics-in-mathematics-with-applications-in-finance-fall-2024/resources/mit18_642_f24_lec14_8_pdf/"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "psychology",
+      "name": "心理与认知",
+      "description": "辨认判断偏差，理解情境如何影响行为。",
+      "items": [
+        {
+          "id": "confirmation-bias",
+          "name": "确认偏误",
+          "english": "Confirmation Bias",
+          "aliases": [],
+          "type": "效应",
+          "description": "更容易寻找或接受支持原有看法的信息，而忽略相反证据。",
+          "url": "/knowledge/confirmation-bias/",
+          "sources": [
+            "https://doi.org/10.1037/1089-2680.2.2.175"
+          ]
+        },
+        {
+          "id": "anchoring",
+          "name": "锚定效应",
+          "english": "Anchoring Effect",
+          "aliases": [],
+          "type": "效应",
+          "description": "最初接触的数值会影响后续估计，即使它与问题关系有限。",
+          "url": "/knowledge/anchoring/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/17835457/"
+          ]
+        },
+        {
+          "id": "availability",
+          "name": "可得性启发式",
+          "english": "Availability Heuristic",
+          "aliases": [],
+          "type": "模型",
+          "description": "用案例容易被想起的程度估计频率，鲜明记忆可能影响判断。",
+          "url": "/knowledge/availability/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/17835457/"
+          ]
+        },
+        {
+          "id": "representativeness",
+          "name": "代表性启发式",
+          "english": "Representativeness Heuristic",
+          "aliases": [],
+          "type": "模型",
+          "description": "根据相似程度判断类别或概率，可能忽略样本量与基准率。",
+          "url": "/knowledge/representativeness/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/17835457/"
+          ]
+        },
+        {
+          "id": "prospect-theory",
+          "name": "前景理论",
+          "english": "Prospect Theory",
+          "aliases": [],
+          "type": "理论",
+          "description": "用参照点、损失与概率权重描述风险选择，预测取决于情境。",
+          "url": "/knowledge/prospect-theory/",
+          "sources": [
+            "https://doi.org/10.2307/1914185"
+          ]
+        },
+        {
+          "id": "loss-aversion",
+          "name": "损失厌恶",
+          "english": "Loss Aversion",
+          "aliases": [],
+          "type": "效应",
+          "description": "相对参照点的损失常比同额收益更有影响，强度并非固定常数。",
+          "url": "/knowledge/loss-aversion/",
+          "sources": [
+            "https://doi.org/10.2307/1914185"
+          ]
+        },
+        {
+          "id": "sunk-cost",
+          "name": "沉没成本效应",
+          "english": "Sunk Cost Effect",
+          "aliases": [],
+          "type": "效应",
+          "description": "已经无法收回的投入影响继续决策，使人忽略未来成本与收益。",
+          "url": "/knowledge/sunk-cost/",
+          "sources": [
+            "https://www.sciencedirect.com/science/article/pii/0749597885900494"
+          ]
+        },
+        {
+          "id": "framing",
+          "name": "框架效应",
+          "english": "Framing Effect",
+          "aliases": [],
+          "type": "效应",
+          "description": "同一问题的表达方式可能改变偏好，需要比较其实际含义。",
+          "url": "/knowledge/framing/",
+          "sources": [
+            "https://doi.org/10.1126/science.7455683"
+          ]
+        },
+        {
+          "id": "endowment",
+          "name": "禀赋效应",
+          "english": "Endowment Effect",
+          "aliases": [],
+          "type": "效应",
+          "description": "拥有某物后可能赋予它更高价值，结果受情境与交易经验影响。",
+          "url": "/knowledge/endowment/",
+          "sources": [
+            "https://doi.org/10.1086/261737"
+          ]
+        },
+        {
+          "id": "status-quo",
+          "name": "现状偏差",
+          "english": "Status Quo Bias",
+          "aliases": [],
+          "type": "效应",
+          "description": "倾向维持当前选项，未必充分比较改变后的成本与收益。",
+          "url": "/knowledge/status-quo/",
+          "sources": [
+            "https://doi.org/10.1007/BF00055564"
+          ]
+        },
+        {
+          "id": "hindsight",
+          "name": "后见之明偏差",
+          "english": "Hindsight Bias",
+          "aliases": [
+            "事后诸葛亮"
+          ],
+          "type": "效应",
+          "description": "知道结果后觉得事情本来容易预测，从而高估当时掌握的信息。",
+          "url": "/knowledge/hindsight/",
+          "sources": [
+            "https://www.cmu.edu/epp/people/faculty/faculty-images-and-files/jep-hpp-hindsight-foresight-1975.pdf"
+          ]
+        },
+        {
+          "id": "planning-fallacy",
+          "name": "计划谬误",
+          "english": "Planning Fallacy",
+          "aliases": [],
+          "type": "效应",
+          "description": "规划任务时可能低估时间与成本，即使过去已有延期经验。",
+          "url": "/knowledge/planning-fallacy/",
+          "sources": [
+            "https://doi.org/10.1037/0022-3514.67.3.366"
+          ]
+        },
+        {
+          "id": "overconfidence",
+          "name": "过度自信效应",
+          "english": "Overconfidence Effect",
+          "aliases": [],
+          "type": "效应",
+          "description": "对能力、预测或判断精度的信心可能超过实际表现。",
+          "url": "/knowledge/overconfidence/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/18426301/"
+          ]
+        },
+        {
+          "id": "dunning-kruger",
+          "name": "达克效应",
+          "english": "Dunning–Kruger Effect",
+          "aliases": [
+            "邓宁克鲁格效应"
+          ],
+          "type": "效应",
+          "description": "部分研究发现低表现者自评偏高；机制与统计解释仍有争论。",
+          "url": "/knowledge/dunning-kruger/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/10626367/",
+            "https://pubmed.ncbi.nlm.nih.gov/23846414/"
+          ]
+        },
+        {
+          "id": "halo",
+          "name": "光环效应",
+          "english": "Halo Effect",
+          "aliases": [
+            "晕轮效应"
+          ],
+          "type": "效应",
+          "description": "对某项突出特征的评价，可能扩散到缺乏证据的其他特征。",
+          "url": "/knowledge/halo/",
+          "sources": [
+            "https://deepblue.lib.umich.edu/bitstream/handle/2027.42/92158/TheHaloEffect.pdf"
+          ]
+        },
+        {
+          "id": "fundamental-attribution",
+          "name": "基本归因错误",
+          "english": "Fundamental Attribution Error",
+          "aliases": [],
+          "type": "效应",
+          "description": "解释他人行为时可能高估个人特质、低估情境影响。",
+          "url": "/knowledge/fundamental-attribution/",
+          "sources": [
+            "https://openstax.org/books/psychology-2e/pages/12-1-what-is-social-psychology"
+          ]
+        },
+        {
+          "id": "self-serving",
+          "name": "自利性偏差",
+          "english": "Self-Serving Bias",
+          "aliases": [],
+          "type": "效应",
+          "description": "成功更易归因自身、失败更易归因外部，具体表现受文化情境影响。",
+          "url": "/knowledge/self-serving/",
+          "sources": [
+            "https://doi.org/10.1037/h0076486"
+          ]
+        },
+        {
+          "id": "cognitive-dissonance",
+          "name": "认知失调",
+          "english": "Cognitive Dissonance",
+          "aliases": [],
+          "type": "理论",
+          "description": "信念与行为冲突时的不适，可能推动解释、态度或行为改变。",
+          "url": "/knowledge/cognitive-dissonance/",
+          "sources": [
+            "https://openstax.org/books/psychology-2e/pages/12-3-attitudes-and-persuasion"
+          ]
+        },
+        {
+          "id": "social-proof",
+          "name": "社会认同",
+          "english": "Social Proof",
+          "aliases": [],
+          "type": "原则",
+          "description": "不确定时借他人行为判断如何行动，但群体选择也可能出错。",
+          "url": "/knowledge/social-proof/",
+          "sources": [
+            "https://www.influenceatwork.com/7-principles-of-persuasion/"
+          ]
+        },
+        {
+          "id": "groupthink",
+          "name": "群体思维",
+          "english": "Groupthink",
+          "aliases": [],
+          "type": "理论",
+          "description": "过度追求一致可能压制异议，使团队忽视替代方案与风险。",
+          "url": "/knowledge/groupthink/",
+          "sources": [
+            "https://openstax.org/books/psychology-2e/pages/12-4-conformity-compliance-and-obedience"
+          ]
+        },
+        {
+          "id": "bystander",
+          "name": "旁观者效应",
+          "english": "Bystander Effect",
+          "aliases": [],
+          "type": "效应",
+          "description": "某些情境中他人在场会降低个人施助概率，危险程度等会调节结果。",
+          "url": "/knowledge/bystander/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/21534650/"
+          ]
+        },
+        {
+          "id": "peak-end",
+          "name": "峰终定律",
+          "english": "Peak–End Rule",
+          "aliases": [],
+          "type": "效应",
+          "description": "回顾体验时，强烈时刻与结束部分可能对评价产生较大影响。",
+          "url": "/knowledge/peak-end/",
+          "sources": [
+            "https://journals.sagepub.com/doi/10.1111/j.1467-9280.1993.tb00589.x"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "systems",
+      "name": "系统与复杂性",
+      "description": "从反馈、约束与结构理解长期变化。",
+      "items": [
+        {
+          "id": "pareto-principle",
+          "name": "二八法则",
+          "english": "Pareto Principle",
+          "aliases": [
+            "帕累托法则",
+            "80/20 法则"
+          ],
+          "type": "原则",
+          "description": "少数因素可能贡献大量结果，是需用数据核验的经验分布。",
+          "url": "/knowledge/pareto-principle/",
+          "sources": [
+            "https://www.juran.com/blog/a-guide-to-the-pareto-principle-80-20-rule-pareto-analysis/",
+            "https://asq.org/quality-resources/pareto"
+          ]
+        },
+        {
+          "id": "murphy-law",
+          "name": "墨菲定律",
+          "english": "Murphy's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "提醒提前考虑可能的失误及后果，是风险警句而非概率定理。",
+          "url": "/knowledge/murphy-law/",
+          "sources": [
+            "https://www.aftc.af.mil/News/Article/4596401/from-rocket-sleds-to-safer-flight-the-test-legacy-of-col-john-p-stapp/"
+          ]
+        },
+        {
+          "id": "goodhart-law",
+          "name": "古德哈特定律",
+          "english": "Goodhart's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "指标一旦成为追逐目标，其作为真实表现代理的质量可能下降。",
+          "url": "/knowledge/goodhart-law/",
+          "sources": [
+            "https://www.rba.gov.au/publications/rdp/1983/8301/introduction.html"
+          ]
+        },
+        {
+          "id": "campbell-law",
+          "name": "坎贝尔定律",
+          "english": "Campbell's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "量化指标承担越重的决策压力，越可能被操纵并扭曲原有过程。",
+          "url": "/knowledge/campbell-law/",
+          "sources": [
+            "https://doi.org/10.1016/0149-7189%2879%2990048-x"
+          ]
+        },
+        {
+          "id": "feedback-loops",
+          "name": "反馈回路",
+          "english": "Feedback Loops",
+          "aliases": [],
+          "type": "模型",
+          "description": "系统输出会反过来影响输入，强化或平衡既有变化趋势。",
+          "url": "/knowledge/feedback-loops/",
+          "sources": [
+            "https://donellameadows.org/learning-to-connect-the-dots-developing-childrens-systems-literacy/"
+          ]
+        },
+        {
+          "id": "stock-flow",
+          "name": "存量与流量",
+          "english": "Stocks and Flows",
+          "aliases": [],
+          "type": "模型",
+          "description": "区分累积总量与变化速率，避免把短期流量变化误读为存量改变。",
+          "url": "/knowledge/stock-flow/",
+          "sources": [
+            "https://donellameadows.org/learning-to-connect-the-dots-developing-childrens-systems-literacy/"
+          ]
+        },
+        {
+          "id": "system-delays",
+          "name": "系统时滞",
+          "english": "System Delays",
+          "aliases": [],
+          "type": "模型",
+          "description": "行动与结果之间存在延迟，过快加码可能造成振荡与过度调整。",
+          "url": "/knowledge/system-delays/",
+          "sources": [
+            "https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/"
+          ]
+        },
+        {
+          "id": "leverage-points",
+          "name": "系统杠杆点",
+          "english": "Leverage Points",
+          "aliases": [],
+          "type": "模型",
+          "description": "寻找规则、信息与目标等结构位置，评估干预可能带来的影响。",
+          "url": "/knowledge/leverage-points/",
+          "sources": [
+            "https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/"
+          ]
+        },
+        {
+          "id": "theory-constraints",
+          "name": "约束理论",
+          "english": "Theory of Constraints",
+          "aliases": [
+            "TOC",
+            "瓶颈理论"
+          ],
+          "type": "理论",
+          "description": "识别并改善限制整体产出的约束，持续检查瓶颈是否转移。",
+          "url": "/knowledge/theory-constraints/",
+          "sources": [
+            "https://www.tocinstitute.org/five-focusing-steps.html"
+          ]
+        },
+        {
+          "id": "little-law",
+          "name": "利特尔法则",
+          "english": "Little's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "在稳定且满足条件的系统中，平均在制量等于吞吐率乘平均逗留时间。",
+          "url": "/knowledge/little-law/",
+          "sources": [
+            "https://doi.org/10.1287/opre.9.3.383"
+          ]
+        },
+        {
+          "id": "network-effects",
+          "name": "网络效应",
+          "english": "Network Effects",
+          "aliases": [],
+          "type": "效应",
+          "description": "用户规模可能改变产品对其他用户的价值，拥挤也可能降低价值。",
+          "url": "/knowledge/network-effects/",
+          "sources": [
+            "https://faculty.haas.berkeley.edu/SHAPIRO/comppolicy.htm"
+          ]
+        },
+        {
+          "id": "path-dependence",
+          "name": "路径依赖",
+          "english": "Path Dependence",
+          "aliases": [],
+          "type": "理论",
+          "description": "早期选择通过成本、习惯与互补关系影响后续可行路径。",
+          "url": "/knowledge/path-dependence/",
+          "sources": [
+            "https://www.jstor.org/stable/1805621"
+          ]
+        },
+        {
+          "id": "tragedy-commons",
+          "name": "公地悲剧",
+          "english": "Tragedy of the Commons",
+          "aliases": [],
+          "type": "模型",
+          "description": "共享资源缺乏有效治理时，个体激励可能导致过度使用。",
+          "url": "/knowledge/tragedy-commons/",
+          "sources": [
+            "https://www.nobelprize.org/prizes/economic-sciences/2009/ostrom/lecture/"
+          ]
+        },
+        {
+          "id": "requisite-variety",
+          "name": "必要多样性法则",
+          "english": "Law of Requisite Variety",
+          "aliases": [
+            "阿什比定律"
+          ],
+          "type": "定律",
+          "description": "有效调节需要足够的响应多样性，以应对系统面对的不同扰动。",
+          "url": "/knowledge/requisite-variety/",
+          "sources": [
+            "https://ashby.info/Ashby-Introduction-to-Cybernetics.pdf"
+          ]
+        },
+        {
+          "id": "emergence",
+          "name": "涌现",
+          "english": "Emergence",
+          "aliases": [],
+          "type": "理论",
+          "description": "整体行为可由局部相互作用形成，不能只靠孤立部件直观预测。",
+          "url": "/knowledge/emergence/",
+          "sources": [
+            "https://web-prod.santafe.edu/events/emergence-selforganization-and-complexity"
+          ]
+        },
+        {
+          "id": "resilience",
+          "name": "系统韧性",
+          "english": "System Resilience",
+          "aliases": [],
+          "type": "模型",
+          "description": "关注系统承受扰动、恢复功能与适应变化的能力。",
+          "url": "/knowledge/resilience/",
+          "sources": [
+            "https://resalliance.org/glossary"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "management",
+      "name": "管理与协作",
+      "description": "对齐目标、安排工作，改善团队协作。",
+      "items": [
+        {
+          "id": "pdca",
+          "name": "PDCA 循环",
+          "english": "Plan–Do–Check–Act",
+          "aliases": [
+            "戴明环",
+            "质量循环"
+          ],
+          "type": "方法",
+          "description": "以计划、执行、检查和调整持续改进，在下一轮验证改进效果。",
+          "url": "/knowledge/pdca/",
+          "sources": [
+            "https://asq.org/quality-resources/pdca-cycle",
+            "https://deming.org/wp-content/uploads/2020/06/circling-back.pdf"
+          ]
+        },
+        {
+          "id": "smart",
+          "name": "SMART 目标",
+          "english": "SMART Goals",
+          "aliases": [],
+          "type": "方法",
+          "description": "用具体、可衡量、可实现、相关与有时限等维度澄清目标。",
+          "url": "/knowledge/smart/",
+          "sources": [
+            "https://www.decisionskills.com/uploads/5/1/6/0/5160560/doran_1981_s.m.a.r.t-way-management-review.pdf"
+          ]
+        },
+        {
+          "id": "okr",
+          "name": "OKR 目标管理",
+          "english": "Objectives and Key Results",
+          "aliases": [],
+          "type": "方法",
+          "description": "用目标说明方向，用关键结果描述可观察的进展与成果。",
+          "url": "/knowledge/okr/",
+          "sources": [
+            "https://www.whatmatters.com/okrs-explained/what-are-okrs"
+          ]
+        },
+        {
+          "id": "mbo",
+          "name": "目标管理",
+          "english": "Management by Objectives",
+          "aliases": [
+            "MBO"
+          ],
+          "type": "方法",
+          "description": "通过协商目标与定期回顾，把个人工作与组织方向连接起来。",
+          "url": "/knowledge/mbo/",
+          "sources": [
+            "https://www.routledge.com/The-Practice-of-Management/Drucker/p/book/9780750685047",
+            "https://www.decisionskills.com/uploads/5/1/6/0/5160560/doran_1981_s.m.a.r.t-way-management-review.pdf"
+          ]
+        },
+        {
+          "id": "raci",
+          "name": "RACI 职责矩阵",
+          "english": "RACI Matrix",
+          "aliases": [],
+          "type": "方法",
+          "description": "区分执行、最终负责、咨询与知会角色，减少任务责任模糊。",
+          "url": "/knowledge/raci/",
+          "sources": [
+            "https://www.pmi.org/learning/library/best-practices-managing-people-quality-management-7012"
+          ]
+        },
+        {
+          "id": "scrum",
+          "name": "Scrum 框架",
+          "english": "Scrum",
+          "aliases": [],
+          "type": "方法",
+          "description": "以短周期、透明检查与适应支持复杂工作，并明确团队责任。",
+          "url": "/knowledge/scrum/",
+          "sources": [
+            "https://scrumguides.org/scrum-guide.html"
+          ]
+        },
+        {
+          "id": "kanban",
+          "name": "看板方法",
+          "english": "Kanban",
+          "aliases": [],
+          "type": "方法",
+          "description": "可视化工作流并限制在制工作，依据流动情况持续改进交付。",
+          "url": "/knowledge/kanban/",
+          "sources": [
+            "https://kanban.university/kanban-guide/"
+          ]
+        },
+        {
+          "id": "gantt-chart",
+          "name": "甘特图",
+          "english": "Gantt Chart",
+          "aliases": [],
+          "type": "方法",
+          "description": "按时间轴展示任务、周期与进度，辅助识别计划冲突。",
+          "url": "/knowledge/gantt-chart/",
+          "sources": [
+            "https://www.pmi.org/disciplined-agile/agile/agilegantt"
+          ]
+        },
+        {
+          "id": "critical-path",
+          "name": "关键路径法",
+          "english": "Critical Path Method",
+          "aliases": [
+            "CPM"
+          ],
+          "type": "方法",
+          "description": "分析任务依赖与工期，找出决定项目最早完成时间的路径。",
+          "url": "/knowledge/critical-path/",
+          "sources": [
+            "https://www.pmi.org/learning/library/pert-cpm-network-precedence-diagram-3736"
+          ]
+        },
+        {
+          "id": "pert",
+          "name": "计划评审技术",
+          "english": "Program Evaluation and Review Technique",
+          "aliases": [
+            "PERT"
+          ],
+          "type": "方法",
+          "description": "用多种时长估计处理任务不确定性，并分析项目依赖。",
+          "url": "/knowledge/pert/",
+          "sources": [
+            "https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/practice-standard-scheduling.pdf?rev=eed9ee4249bf49df8b40fc2c54bb8000&v=c7ca2721-8c26-4e07-ba47-069d0987bc0c"
+          ]
+        },
+        {
+          "id": "parkinson-law",
+          "name": "帕金森定律",
+          "english": "Parkinson's Law",
+          "aliases": [],
+          "type": "定律",
+          "description": "工作可能膨胀以占满可用时间，是组织行为的经验观察。",
+          "url": "/knowledge/parkinson-law/",
+          "sources": [
+            "https://www.economist.com/news/1955/11/19/parkinsons-law",
+            "https://www.pmi.org/learning/library/program-evaluation-review-technique-parkinsons-1972"
+          ]
+        },
+        {
+          "id": "peter-principle",
+          "name": "彼得原理",
+          "english": "Peter Principle",
+          "aliases": [],
+          "type": "原则",
+          "description": "按当前表现晋升可能把人放到不擅长的岗位，是管理警示。",
+          "url": "/knowledge/peter-principle/",
+          "sources": [
+            "https://www.nber.org/system/files/working_papers/w24343/w24343.pdf"
+          ]
+        },
+        {
+          "id": "principal-agent",
+          "name": "委托代理理论",
+          "english": "Principal–Agent Theory",
+          "aliases": [],
+          "type": "理论",
+          "description": "当委托人与代理人的信息和利益不一致时，需设计监督与激励。",
+          "url": "/knowledge/principal-agent/",
+          "sources": [
+            "https://www.sciencedirect.com/science/article/pii/0304405X7690026X"
+          ]
+        },
+        {
+          "id": "psychological-safety",
+          "name": "心理安全感",
+          "english": "Psychological Safety",
+          "aliases": [],
+          "type": "理论",
+          "description": "团队成员能提出问题和承认错误而不惧羞辱，有助于学习与协作。",
+          "url": "/knowledge/psychological-safety/",
+          "sources": [
+            "https://dash.harvard.edu/entities/publication/13a7b031-0fdd-45ec-a7e0-2b80e2bc679f"
+          ]
+        },
+        {
+          "id": "situational-leadership",
+          "name": "情境领导",
+          "english": "Situational Leadership",
+          "aliases": [],
+          "type": "模型",
+          "description": "根据任务与成员状态调整支持和指导，具体模型的证据需审视。",
+          "url": "/knowledge/situational-leadership/",
+          "sources": [
+            "https://situational.com/situational-leadership/"
+          ]
+        },
+        {
+          "id": "servant-leadership",
+          "name": "服务型领导",
+          "english": "Servant Leadership",
+          "aliases": [],
+          "type": "理论",
+          "description": "把支持成员成长和工作条件作为领导职责的一部分。",
+          "url": "/knowledge/servant-leadership/",
+          "sources": [
+            "https://greenleaf.org/what-is-servant-leadership/"
+          ]
+        },
+        {
+          "id": "retrospective",
+          "name": "团队复盘",
+          "english": "Retrospective",
+          "aliases": [],
+          "type": "方法",
+          "description": "共同回顾事实、原因和可改进之处，并确定下一步可验证行动。",
+          "url": "/knowledge/retrospective/",
+          "sources": [
+            "https://scrumguides.org/scrum-guide.html"
+          ]
+        },
+        {
+          "id": "nonviolent-communication",
+          "name": "非暴力沟通",
+          "english": "Nonviolent Communication",
+          "aliases": [
+            "NVC"
+          ],
+          "type": "方法",
+          "description": "区分观察、感受、需要与请求，帮助清晰表达并理解对方。",
+          "url": "/knowledge/nonviolent-communication/",
+          "sources": [
+            "https://www.cnvc.org/store/nonviolent-communication-a-language-of-life",
+            "https://www.cnvc.org/store/sync-cards"
+          ]
+        },
+        {
+          "id": "kaizen",
+          "name": "持续改善",
+          "english": "Kaizen",
+          "aliases": [
+            "改善法"
+          ],
+          "type": "方法",
+          "description": "以日常的小步改进和现场参与减少浪费，并持续检验实际效果。",
+          "url": "/knowledge/kaizen/",
+          "sources": [
+            "https://www.lean.org/lexicon-terms/kaizen/"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problem-solving",
+      "name": "问题分析与改进",
+      "description": "把问题拆清楚，用可执行工具推进改善。",
+      "items": [
+        {
+          "id": "five-whys",
+          "name": "五个为什么",
+          "english": "Five Whys",
+          "aliases": [
+            "5 Whys"
+          ],
+          "type": "方法",
+          "description": "连续追问原因来寻找可干预环节，次数不固定且应由证据支持。",
+          "url": "/knowledge/five-whys/",
+          "sources": [
+            "https://asq.org/quality-resources/five-whys"
+          ]
+        },
+        {
+          "id": "fishbone",
+          "name": "鱼骨图",
+          "english": "Cause-and-Effect Diagram",
+          "aliases": [
+            "石川图",
+            "因果图"
+          ],
+          "type": "方法",
+          "description": "按类别展开可能原因以组织调查，图上的原因仍需逐项验证。",
+          "url": "/knowledge/fishbone/",
+          "sources": [
+            "https://asq.org/quality-resources/fishbone"
+          ]
+        },
+        {
+          "id": "pareto-chart",
+          "name": "帕累托图",
+          "english": "Pareto Chart",
+          "aliases": [
+            "排列图"
+          ],
+          "type": "方法",
+          "description": "按频次或影响排序问题，并用累计比例帮助确定调查重点。",
+          "url": "/knowledge/pareto-chart/",
+          "sources": [
+            "https://asq.org/quality-resources/pareto"
+          ]
+        },
+        {
+          "id": "control-chart",
+          "name": "控制图",
+          "english": "Control Chart",
+          "aliases": [],
+          "type": "方法",
+          "description": "结合时间序列与控制界限识别过程变化，区分常见和特殊原因。",
+          "url": "/knowledge/control-chart/",
+          "sources": [
+            "https://asq.org/quality-resources/control-chart"
+          ]
+        },
+        {
+          "id": "check-sheet",
+          "name": "检查表",
+          "english": "Check Sheet",
+          "aliases": [
+            "核查表",
+            "数据收集表"
+          ],
+          "type": "方法",
+          "description": "用统一表格记录事件或缺陷出现情况，为后续分析收集数据。",
+          "url": "/knowledge/check-sheet/",
+          "sources": [
+            "https://asq.org/quality-resources/check-sheet"
+          ]
+        },
+        {
+          "id": "histogram",
+          "name": "直方图",
+          "english": "Histogram",
+          "aliases": [],
+          "type": "方法",
+          "description": "按区间统计数据频数，以观察分布形态、集中程度与异常。",
+          "url": "/knowledge/histogram/",
+          "sources": [
+            "https://asq.org/quality-resources/histogram"
+          ]
+        },
+        {
+          "id": "scatter-diagram",
+          "name": "散点图",
+          "english": "Scatter Diagram",
+          "aliases": [],
+          "type": "方法",
+          "description": "展示两变量的共同变化模式，相关图形本身不能建立因果关系。",
+          "url": "/knowledge/scatter-diagram/",
+          "sources": [
+            "https://asq.org/quality-resources/scatter-diagram"
+          ]
+        },
+        {
+          "id": "stratification",
+          "name": "分层分析",
+          "english": "Stratification",
+          "aliases": [],
+          "type": "方法",
+          "description": "按来源或条件拆分数据，寻找总体汇总容易掩盖的差异。",
+          "url": "/knowledge/stratification/",
+          "sources": [
+            "https://asq.org/quality-resources/stratification"
+          ]
+        },
+        {
+          "id": "flowchart",
+          "name": "流程图",
+          "english": "Flowchart",
+          "aliases": [],
+          "type": "方法",
+          "description": "绘制步骤、分支和流向，让流程中的等待、重复与断点可见。",
+          "url": "/knowledge/flowchart/",
+          "sources": [
+            "https://asq.org/quality-resources/flowchart"
+          ]
+        },
+        {
+          "id": "a3",
+          "name": "A3 问题解决",
+          "english": "A3 Problem Solving",
+          "aliases": [],
+          "type": "方法",
+          "description": "在简洁结构中说明背景、现状、原因、对策与验证计划。",
+          "url": "/knowledge/a3/",
+          "sources": [
+            "https://www.lean.org/lexicon-terms/a3-report/"
+          ]
+        },
+        {
+          "id": "dmaic",
+          "name": "DMAIC 改进法",
+          "english": "Define–Measure–Analyze–Improve–Control",
+          "aliases": [],
+          "type": "方法",
+          "description": "依次定义、测量、分析、改进与控制，系统处理过程质量问题。",
+          "url": "/knowledge/dmaic/",
+          "sources": [
+            "https://asq.org/quality-resources/dmaic"
+          ]
+        },
+        {
+          "id": "fmea",
+          "name": "失效模式与影响分析",
+          "english": "Failure Mode and Effects Analysis",
+          "aliases": [
+            "FMEA"
+          ],
+          "type": "方法",
+          "description": "识别潜在失效及其影响并排序改进，评分不应替代实际风险判断。",
+          "url": "/knowledge/fmea/",
+          "sources": [
+            "https://asq.org/quality-resources/fmea"
+          ]
+        },
+        {
+          "id": "poka-yoke",
+          "name": "防错法",
+          "english": "Mistake Proofing",
+          "aliases": [
+            "防呆",
+            "Poka-yoke"
+          ],
+          "type": "方法",
+          "description": "改变设计或流程，预防错误发生或让错误容易被及时发现。",
+          "url": "/knowledge/poka-yoke/",
+          "sources": [
+            "https://asq.org/quality-resources/mistake-proofing"
+          ]
+        },
+        {
+          "id": "sipoc",
+          "name": "SIPOC 流程分析",
+          "english": "Suppliers–Inputs–Process–Outputs–Customers",
+          "aliases": [],
+          "type": "方法",
+          "description": "从供应方到客户梳理输入、过程与输出，界定改进范围。",
+          "url": "/knowledge/sipoc/",
+          "sources": [
+            "https://asq.org/quality-resources/sipoc"
+          ]
+        },
+        {
+          "id": "value-stream",
+          "name": "价值流图",
+          "english": "Value Stream Mapping",
+          "aliases": [
+            "VSM"
+          ],
+          "type": "方法",
+          "description": "描绘从需求到交付的信息与物料流，识别等待及非增值环节。",
+          "url": "/knowledge/value-stream/",
+          "sources": [
+            "https://www.lean.org/lexicon-terms/value-stream-mapping/"
+          ]
+        },
+        {
+          "id": "root-cause-analysis",
+          "name": "根因分析",
+          "english": "Root Cause Analysis",
+          "aliases": [
+            "RCA"
+          ],
+          "type": "方法",
+          "description": "用证据追查问题形成的机制，避免只处理表面症状。",
+          "url": "/knowledge/root-cause-analysis/",
+          "sources": [
+            "https://asq.org/quality-resources/root-cause-analysis"
+          ]
+        },
+        {
+          "id": "affinity-diagram",
+          "name": "亲和图",
+          "english": "Affinity Diagram",
+          "aliases": [
+            "KJ 法"
+          ],
+          "type": "方法",
+          "description": "将零散观察按自然关联分组，帮助发现共同主题与问题结构。",
+          "url": "/knowledge/affinity-diagram/",
+          "sources": [
+            "https://asq.org/quality-resources/affinity"
+          ]
+        },
+        {
+          "id": "brainstorming",
+          "name": "头脑风暴",
+          "english": "Brainstorming",
+          "aliases": [],
+          "type": "方法",
+          "description": "先产生多种想法再评估，注意群体压力与发言机会分配。",
+          "url": "/knowledge/brainstorming/",
+          "sources": [
+            "https://asq.org/quality-resources/brainstorming",
+            "https://doi.org/10.1037/0022-3514.53.3.497",
+            "https://www.sciencedirect.com/science/article/pii/S0022103103000404"
+          ]
+        },
+        {
+          "id": "impact-effort",
+          "name": "影响—投入矩阵",
+          "english": "Impact–Effort Matrix",
+          "aliases": [],
+          "type": "方法",
+          "description": "比较行动的预期影响与实施投入，为优先级讨论提供依据。",
+          "url": "/knowledge/impact-effort/",
+          "sources": [
+            "https://asq.org/quality-resources/impact-effort-matrix"
+          ]
+        },
+        {
+          "id": "five-w-one-h",
+          "name": "5W1H 分析法",
+          "english": "Five Ws and One H",
+          "aliases": [],
+          "type": "方法",
+          "description": "从何事、为何、何人、何时、何地与如何六方面补齐问题信息。",
+          "url": "/knowledge/five-w-one-h/",
+          "sources": [
+            "https://asq.org/quality-resources/problem-solving"
+          ]
+        },
+        {
+          "id": "five-s",
+          "name": "5S 管理",
+          "english": "5S",
+          "aliases": [],
+          "type": "方法",
+          "description": "通过整理、整顿、清扫、清洁与素养，建立可视化且便于维持的工作环境。",
+          "url": "/knowledge/five-s/",
+          "sources": [
+            "https://asq.org/quality-resources/five-s-tutorial"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strategy",
+      "name": "战略与产品",
+      "description": "理解竞争、用户价值与资源配置。",
+      "items": [
+        {
+          "id": "swot",
+          "name": "SWOT 分析",
+          "english": "Strengths–Weaknesses–Opportunities–Threats",
+          "aliases": [],
+          "type": "方法",
+          "description": "结合内部优劣势与外部机会威胁，形成可检验的战略选项。",
+          "url": "/knowledge/swot/",
+          "sources": [
+            "https://www.cipd.org/en/knowledge/factsheets/swot-analysis-factsheet/"
+          ]
+        },
+        {
+          "id": "pestel",
+          "name": "PESTEL 分析",
+          "english": "PESTEL Analysis",
+          "aliases": [],
+          "type": "方法",
+          "description": "从政治、经济、社会、技术、环境与法律维度扫描宏观变化。",
+          "url": "/knowledge/pestel/",
+          "sources": [
+            "https://www.cipd.org/en/knowledge/factsheets/pestle-analysis-factsheet/"
+          ]
+        },
+        {
+          "id": "five-forces",
+          "name": "波特五力模型",
+          "english": "Porter's Five Forces",
+          "aliases": [],
+          "type": "模型",
+          "description": "从竞争者、进入者、替代品、买方与供方分析行业竞争结构。",
+          "url": "/knowledge/five-forces/",
+          "sources": [
+            "https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx"
+          ]
+        },
+        {
+          "id": "value-chain",
+          "name": "价值链分析",
+          "english": "Value Chain Analysis",
+          "aliases": [],
+          "type": "方法",
+          "description": "拆解创造和交付价值的活动，定位成本来源与差异化机会。",
+          "url": "/knowledge/value-chain/",
+          "sources": [
+            "https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-value-chain.aspx"
+          ]
+        },
+        {
+          "id": "bcg-matrix",
+          "name": "波士顿矩阵",
+          "english": "BCG Growth–Share Matrix",
+          "aliases": [],
+          "type": "模型",
+          "description": "用市场增长与相对份额讨论业务组合，简化维度不能替代完整分析。",
+          "url": "/knowledge/bcg-matrix/",
+          "sources": [
+            "https://www.bcg.com/about/overview/our-history/growth-share-matrix"
+          ]
+        },
+        {
+          "id": "ansoff-matrix",
+          "name": "安索夫矩阵",
+          "english": "Ansoff Matrix",
+          "aliases": [],
+          "type": "模型",
+          "description": "按现有或新产品、现有或新市场区分增长路径与相关风险。",
+          "url": "/knowledge/ansoff-matrix/",
+          "sources": [
+            "https://books.google.com/books/about/Strategies_for_Diversification.html?id=_opJvwEACAAJ",
+            "https://catalogimages.wiley.com/images/db/pdf/9780470745922.excerpt.pdf"
+          ]
+        },
+        {
+          "id": "business-model-canvas",
+          "name": "商业模式画布",
+          "english": "Business Model Canvas",
+          "aliases": [
+            "BMC"
+          ],
+          "type": "方法",
+          "description": "用九个相互关联的模块描述业务如何创造、交付与获取价值。",
+          "url": "/knowledge/business-model-canvas/",
+          "sources": [
+            "https://www.strategyzer.com/library/the-business-model-canvas"
+          ]
+        },
+        {
+          "id": "jobs-to-be-done",
+          "name": "待办任务理论",
+          "english": "Jobs to Be Done",
+          "aliases": [
+            "JTBD"
+          ],
+          "type": "理论",
+          "description": "从用户在具体情境中想完成的进展理解需求，而非只看人群标签。",
+          "url": "/knowledge/jobs-to-be-done/",
+          "sources": [
+            "https://www.christenseninstitute.org/theory/jobs-to-be-done/"
+          ]
+        },
+        {
+          "id": "kano",
+          "name": "Kano 模型",
+          "english": "Kano Model",
+          "aliases": [
+            "狩野模型"
+          ],
+          "type": "模型",
+          "description": "区分不同需求对满意度的影响，分类会随用户与时间变化。",
+          "url": "/knowledge/kano/",
+          "sources": [
+            "https://www.jstage.jst.go.jp/article/quality/14/2/14_KJ00002952366/_article"
+          ]
+        },
+        {
+          "id": "minimum-viable-product",
+          "name": "最小可行产品",
+          "english": "Minimum Viable Product",
+          "aliases": [
+            "MVP"
+          ],
+          "type": "方法",
+          "description": "以最小必要投入验证关键业务假设，重点是学习而非功能数量。",
+          "url": "/knowledge/minimum-viable-product/",
+          "sources": [
+            "https://theleanstartup.com/principles",
+            "https://entrepreneurship.hbs.edu/Documents/Session%20Summary/HBSRockMVPDevelopment.pdf"
+          ]
+        },
+        {
+          "id": "build-measure-learn",
+          "name": "构建—测量—学习",
+          "english": "Build–Measure–Learn",
+          "aliases": [],
+          "type": "方法",
+          "description": "围绕假设构建实验，观察结果并决定调整或继续推进。",
+          "url": "/knowledge/build-measure-learn/",
+          "sources": [
+            "https://theleanstartup.com/principles"
+          ]
+        },
+        {
+          "id": "blue-ocean",
+          "name": "蓝海战略",
+          "english": "Blue Ocean Strategy",
+          "aliases": [],
+          "type": "理论",
+          "description": "通过重构价值要素寻找新的需求空间，仍需验证成本与真实需求。",
+          "url": "/knowledge/blue-ocean/",
+          "sources": [
+            "https://www.blueoceanstrategy.com/tools/four-actions-framework/"
+          ]
+        },
+        {
+          "id": "game-theory",
+          "name": "博弈论",
+          "english": "Game Theory",
+          "aliases": [],
+          "type": "理论",
+          "description": "分析多个决策者相互影响时的策略选择，结果依赖规则与信息。",
+          "url": "/knowledge/game-theory/",
+          "sources": [
+            "https://plato.stanford.edu/entries/game-theory/",
+            "https://assets.press.princeton.edu/about_pup/PUP100/book/2cNeumann.pdf"
+          ]
+        },
+        {
+          "id": "prisoners-dilemma",
+          "name": "囚徒困境",
+          "english": "Prisoner's Dilemma",
+          "aliases": [],
+          "type": "模型",
+          "description": "某些收益结构下，个体占优选择可能导向对双方更差的结果。",
+          "url": "/knowledge/prisoners-dilemma/",
+          "sources": [
+            "https://plato.stanford.edu/entries/prisoner-dilemma/"
+          ]
+        },
+        {
+          "id": "nash-equilibrium",
+          "name": "纳什均衡",
+          "english": "Nash Equilibrium",
+          "aliases": [],
+          "type": "模型",
+          "description": "在其他参与者策略不变时，没人能靠单方面改策略获得更好结果。",
+          "url": "/knowledge/nash-equilibrium/",
+          "sources": [
+            "https://doi.org/10.1073/pnas.36.1.48"
+          ]
+        },
+        {
+          "id": "diffusion-innovation",
+          "name": "创新扩散理论",
+          "english": "Diffusion of Innovations",
+          "aliases": [],
+          "type": "理论",
+          "description": "研究新观念如何通过人群和渠道传播，采用阶段只是分析模型。",
+          "url": "/knowledge/diffusion-innovation/",
+          "sources": [
+            "https://www.simonandschuster.com/books/Diffusion-of-Innovations-5th-Edition/Everett-M-Rogers/9780743222099"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "name": "学习与日常行动",
+      "description": "把知识转成练习、习惯和更清晰的安排。",
+      "items": [
+        {
+          "id": "retrieval-practice",
+          "name": "检索练习",
+          "english": "Retrieval Practice",
+          "aliases": [
+            "主动回忆"
+          ],
+          "type": "方法",
+          "description": "主动从记忆中提取知识并核对反馈，比只重复阅读更能检验掌握程度。",
+          "url": "/knowledge/retrieval-practice/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/16507066/"
+          ]
+        },
+        {
+          "id": "spaced-practice",
+          "name": "间隔练习",
+          "english": "Spaced Practice",
+          "aliases": [
+            "间隔重复"
+          ],
+          "type": "方法",
+          "description": "把练习分散到不同时间，通过适当间隔支持长期记忆。",
+          "url": "/knowledge/spaced-practice/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/16719566/"
+          ]
+        },
+        {
+          "id": "interleaving",
+          "name": "交错练习",
+          "english": "Interleaving",
+          "aliases": [],
+          "type": "方法",
+          "description": "混合相关题型以练习辨别适用方法，效果取决于材料和基础。",
+          "url": "/knowledge/interleaving/",
+          "sources": [
+            "https://doi.org/10.1007/s11251-007-9015-8"
+          ]
+        },
+        {
+          "id": "elaboration",
+          "name": "精细加工",
+          "english": "Elaboration",
+          "aliases": [],
+          "type": "方法",
+          "description": "用已有知识解释新信息并建立联系，让理解超越表面记忆。",
+          "url": "/knowledge/elaboration/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/26173288/"
+          ]
+        },
+        {
+          "id": "self-explanation",
+          "name": "自我解释",
+          "english": "Self-Explanation",
+          "aliases": [],
+          "type": "方法",
+          "description": "说明每一步为什么成立，借此发现推理遗漏和理解缺口。",
+          "url": "/knowledge/self-explanation/",
+          "sources": [
+            "https://doi.org/10.1207/s15516709cog1302_1"
+          ]
+        },
+        {
+          "id": "feynman-technique",
+          "name": "费曼学习法",
+          "english": "Feynman Technique",
+          "aliases": [],
+          "type": "方法",
+          "description": "尝试用简单语言解释概念，发现卡点后回查并修正理解。",
+          "url": "/knowledge/feynman-technique/",
+          "sources": [
+            "https://ctlo.caltech.edu/aboutctlo/whoweserve/undergraduates/learning-resources/learning/power-of-teaching",
+            "https://doi.org/10.1207/s15516709cog1302_1"
+          ]
+        },
+        {
+          "id": "deliberate-practice",
+          "name": "刻意练习",
+          "english": "Deliberate Practice",
+          "aliases": [],
+          "type": "方法",
+          "description": "围绕具体能力设计有反馈的挑战性训练，并持续修正薄弱环节。",
+          "url": "/knowledge/deliberate-practice/",
+          "sources": [
+            "https://doi.org/10.1037/0033-295X.100.3.363",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC6731745/"
+          ]
+        },
+        {
+          "id": "forgetting-curve",
+          "name": "遗忘曲线",
+          "english": "Forgetting Curve",
+          "aliases": [
+            "艾宾浩斯曲线"
+          ],
+          "type": "模型",
+          "description": "记忆保持随时间变化，速度受材料、练习与情境影响，并非固定表格。",
+          "url": "/knowledge/forgetting-curve/",
+          "sources": [
+            "https://pubmed.ncbi.nlm.nih.gov/26148023/"
+          ]
+        },
+        {
+          "id": "cognitive-load",
+          "name": "认知负荷理论",
+          "english": "Cognitive Load Theory",
+          "aliases": [],
+          "type": "理论",
+          "description": "考虑工作记忆的限制来安排教学材料，减少无关负担。",
+          "url": "/knowledge/cognitive-load/",
+          "sources": [
+            "https://doi.org/10.1207/s15516709cog1202_4"
+          ]
+        },
+        {
+          "id": "growth-mindset",
+          "name": "成长型思维",
+          "english": "Growth Mindset",
+          "aliases": [],
+          "type": "理论",
+          "description": "把能力看作可发展的信念可能影响学习反应，干预效果具有情境差异。",
+          "url": "/knowledge/growth-mindset/",
+          "sources": [
+            "https://www.nature.com/articles/s41586-019-1466-y"
+          ]
+        },
+        {
+          "id": "implementation-intentions",
+          "name": "执行意图",
+          "english": "Implementation Intentions",
+          "aliases": [
+            "如果—那么计划"
+          ],
+          "type": "方法",
+          "description": "预先写清如果出现某个情境就采取某个行动，以降低启动阻力。",
+          "url": "/knowledge/implementation-intentions/",
+          "sources": [
+            "https://doi.org/10.1037/0003-066X.54.7.493"
+          ]
+        },
+        {
+          "id": "mental-contrasting",
+          "name": "心理对照",
+          "english": "Mental Contrasting",
+          "aliases": [],
+          "type": "方法",
+          "description": "同时想象期望结果与现实障碍，帮助判断目标并规划行动。",
+          "url": "/knowledge/mental-contrasting/",
+          "sources": [
+            "https://woopmylife.org/en/science"
+          ]
+        },
+        {
+          "id": "mini-habits",
+          "name": "微习惯",
+          "english": "Mini Habits",
+          "aliases": [
+            "小习惯"
+          ],
+          "type": "方法",
+          "description": "把每日行动缩小到容易开始的程度，降低启动阻力并逐步形成习惯。",
+          "url": "/knowledge/mini-habits/",
+          "sources": [
+            "https://minihabits.com/about-mini-habits/",
+            "https://www.bjfogg.com/tiny-habits"
+          ]
+        },
+        {
+          "id": "pomodoro",
+          "name": "番茄工作法",
+          "english": "Pomodoro Technique",
+          "aliases": [],
+          "type": "方法",
+          "description": "用专注与休息交替的时间段安排工作，时长可依任务调整。",
+          "url": "/knowledge/pomodoro/",
+          "sources": [
+            "https://www.pomodorotechnique.com/"
+          ]
+        },
+        {
+          "id": "timeboxing",
+          "name": "时间盒",
+          "english": "Timeboxing",
+          "aliases": [],
+          "type": "方法",
+          "description": "为任务预先设定时间边界，到时检查结果并决定下一步。",
+          "url": "/knowledge/timeboxing/",
+          "sources": [
+            "https://scrumguides.org/scrum-guide.html"
+          ]
+        },
+        {
+          "id": "eisenhower-matrix",
+          "name": "艾森豪威尔矩阵",
+          "english": "Eisenhower Matrix",
+          "aliases": [
+            "重要紧急四象限",
+            "时间管理四象限"
+          ],
+          "type": "方法",
+          "description": "按重要与紧急区分任务，辅助安排执行、规划、委派或放弃。",
+          "url": "/knowledge/eisenhower-matrix/",
+          "sources": [
+            "https://www.franklincovey.com/courses/the-7-habits/habit-3/"
+          ]
+        },
+        {
+          "id": "gtd",
+          "name": "GTD 工作法",
+          "english": "Getting Things Done",
+          "aliases": [
+            "搞定"
+          ],
+          "type": "方法",
+          "description": "通过收集、澄清、组织、回顾与执行，把待办事项转为清晰的下一步行动。",
+          "url": "/knowledge/gtd/",
+          "sources": [
+            "https://gettingthingsdone.com/what-is-gtd/"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "Hacker Laws · 工程条目与出处线索",
+      "url": "https://github.com/dwmkerr/hacker-laws"
+    },
+    {
+      "name": "ASQ · 质量改进工具目录",
+      "url": "https://asq.org/quality-resources/quality-tools"
+    },
+    {
+      "name": "ASQ · 七种基本质量工具",
+      "url": "https://asq.org/quality-resources/seven-basic-quality-tools"
+    },
+    {
+      "name": "ASQ · PDCA 循环",
+      "url": "https://asq.org/quality-resources/pdca-cycle"
+    },
+    {
+      "name": "Scrum 官方指南",
+      "url": "https://scrumguides.org/scrum-guide.html"
+    },
+    {
+      "name": "诺贝尔奖 · Kahneman 讲座",
+      "url": "https://www.nobelprize.org/uploads/2018/06/kahnemann-lecture.pdf"
+    },
+    {
+      "name": "OpenStax · 心理学教材索引",
+      "url": "https://openstax.org/books/psychology-2e/pages/index"
+    },
+    {
+      "name": "OpenStax · 社会心理学",
+      "url": "https://openstax.org/books/psychology-2e/pages/12-1-what-is-social-psychology"
+    },
+    {
+      "name": "OpenStax · 统计学教材索引",
+      "url": "https://openstax.org/books/introductory-statistics/pages/index"
+    },
+    {
+      "name": "OpenStax · 中心极限定理",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/7-3-using-the-central-limit-theorem"
+    },
+    {
+      "name": "Investor.gov · 资产配置与分散投资",
+      "url": "https://www.investor.gov/introduction-investing/getting-started/asset-allocation"
+    },
+    {
+      "name": "Investor.gov · 复利",
+      "url": "https://www.investor.gov/introduction-investing/investing-basics/glossary/compound-interest"
+    },
+    {
+      "name": "Investor.gov · 定期定额投资",
+      "url": "https://www.investor.gov/introduction-investing/investing-basics/glossary/dollar-cost-averaging"
+    },
+    {
+      "name": "Kelly · A New Interpretation of Information Rate",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/j.1538-7305.1956.tb03809.x"
+    },
+    {
+      "name": "IBM · 蒙特卡洛模拟",
+      "url": "https://www.ibm.com/think/topics/monte-carlo-simulation"
+    },
+    {
+      "name": "Lean Enterprise Institute · 精益词典入口",
+      "url": "https://www.lean.org/explore-lean/lexicon-terms/"
+    },
+    {
+      "name": "Lean Enterprise Institute · 价值流图",
+      "url": "https://www.lean.org/lexicon-terms/value-stream-mapping/"
+    },
+    {
+      "name": "Donella Meadows · 系统杠杆点",
+      "url": "https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/"
+    },
+    {
+      "name": "OpenStax · SWOT 战略分析",
+      "url": "https://openstax.org/books/principles-management/pages/8-2-using-swot-for-strategic-analysis"
+    },
+    {
+      "name": "University of Rochester · 间隔检索练习",
+      "url": "https://www.rochester.edu/college/learningcenter/assets/pdf-doc/studying/spaced-retrieval-practice-final.pdf"
+    },
+    {
+      "name": "Air University · OODA 循环应用",
+      "url": "https://www.airuniversity.af.edu/desktopmodules/articlecs/print.aspx?article=1777083&moduleid=39216"
+    },
+    {
+      "name": "Getting Things Done · GTD 官方介绍",
+      "url": "https://gettingthingsdone.com/what-is-gtd/"
+    },
+    {
+      "name": "Lean Enterprise Institute · 5S",
+      "url": "https://www.lean.org/lexicon-terms/five-s/"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} · 定律与方法 · {{ .Site.Params.logoTitle }}</title>
+  <meta name="description" content="{{ .Description }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/knowledge.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/knowledge-article.css" | relURL }}">
+</head>
+<body class="article-page">
+  {{ $entry := dict }}{{ $category := dict }}{{ $position := 0 }}
+  {{ range .Site.Data.knowledge.categories }}{{ $group := . }}{{ range $index, $item := .items }}{{ if eq $item.id $.Params.knowledge_id }}{{ $entry = $item }}{{ $category = $group }}{{ $position = $index }}{{ end }}{{ end }}{{ end }}
+  <a class="skip-link" href="#article-body">跳到正文</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="{{ "/" | relURL }}">{{ .Site.Params.logoTitle }}<span class="brand-dot">.</span></a>
+    <nav aria-label="站点导航"><a href="{{ "/" | relURL }}">博客首页</a><a class="current" href="{{ "/knowledge/" | relURL }}">定律与方法</a><a href="{{ "/post/" | relURL }}">文章归档 ↗</a></nav>
+  </div></header>
+  <main class="article-shell">
+    <nav class="breadcrumbs" aria-label="面包屑导航"><a href="{{ "/knowledge/" | relURL }}">全部条目</a><span>/</span><a href="{{ "/knowledge/" | relURL }}#{{ $category.id }}">{{ $category.name }}</a><span>/</span><span aria-current="page">{{ .Title }}</span></nav>
+    <div class="reading-layout">
+      <article>
+        <header class="article-heading">
+          <p class="eyebrow">THE THINKING COLLECTION <span class="article-type">{{ $entry.type }}</span></p>
+          <h1>{{ .Title }}</h1><p class="article-english" lang="en">{{ $entry.english }}</p>
+          <p class="article-deck">{{ .Description }}</p>
+          <div class="article-meta"><span>{{ $category.name }}</span><span>{{ .Date.Format "2006.01.02" }}</span><span>约 {{ .ReadingTime }} 分钟</span></div>
+        </header>
+        <details class="mobile-article-toc"><summary>本文目录</summary>{{ replace .TableOfContents "id=\"TableOfContents\"" "id=\"mobile-table-of-contents\"" | safeHTML }}</details>
+        <div class="article-body" id="article-body" tabindex="-1">{{ .Content }}</div>
+        <nav class="article-pagination" aria-label="同领域阅读">
+          {{ if gt $position 0 }}{{ $previous := index $category.items (sub $position 1) }}{{ if $previous.url }}<a href="{{ $previous.url | relURL }}"><span>← 上一条</span><strong>{{ $previous.name }}</strong></a>{{ end }}{{ end }}
+          {{ if lt (add $position 1) (len $category.items) }}{{ $next := index $category.items (add $position 1) }}{{ if $next.url }}<a class="next-article" href="{{ $next.url | relURL }}"><span>下一条 →</span><strong>{{ $next.name }}</strong></a>{{ end }}{{ end }}
+        </nav>
+        <a class="back-to-collection" href="{{ "/knowledge/" | relURL }}#{{ .Params.knowledge_id }}">← 回到目录中的「{{ .Title }}」</a>
+      </article>
+      <aside class="article-sidebar" aria-label="本文目录"><div class="article-sidebar-inner"><p class="sidebar-label">本文目录 <span>ON THIS PAGE</span></p>{{ .TableOfContents }}<a class="toc-back" href="{{ "/knowledge/" | relURL }}#{{ $category.id }}">← 浏览{{ $category.name }}</a></div></aside>
+    </div>
+  </main>
+  <footer class="site-footer"><span>{{ .Site.Params.logoTitle }} · 保持好奇，持续思考。</span><a href="{{ "/knowledge/" | relURL }}">返回知识索引 ↑</a></footer>
+</body>
+</html>

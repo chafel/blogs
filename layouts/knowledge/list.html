@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} · {{ .Site.Params.logoTitle }}</title>
+  <meta name="description" content="{{ .Description }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/knowledge.css" | relURL }}">
+  <script src="{{ "js/knowledge.js" | relURL }}" defer></script>
+</head>
+<body>
+  {{ $catalog := .Site.Data.knowledge }}
+  {{ $total := 0 }}{{ $published := 0 }}
+  {{ range $catalog.categories }}{{ $total = add $total (len .items) }}{{ range .items }}{{ if .url }}{{ $published = add $published 1 }}{{ end }}{{ end }}{{ end }}
+  <a class="skip-link" href="#directory">跳到条目目录</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ "/" | relURL }}">{{ .Site.Params.logoTitle }}<span class="brand-dot">.</span></a>
+      <nav aria-label="站点导航">
+        <a href="{{ "/" | relURL }}">博客首页</a>
+        <a class="current" href="{{ "/knowledge/" | relURL }}" aria-current="page">定律与方法</a>
+        <a href="{{ "/post/" | relURL }}">文章归档 <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> THE THINKING COLLECTION</p>
+        <h1 id="page-title">定律与方法<span class="title-mark"> / </span><span class="title-note">思考的工具箱</span></h1>
+        <p class="intro">从理解一个规律，到找到一种做法。<br>收集跨越领域的定律、模型与实践方法，让每一次思考都有迹可循。</p>
+        <div class="hero-note"><span class="live-dot"></span> 持续收录，常读常新 <span class="note-separator">/</span> 一份可以反复翻阅的知识索引</div>
+      </div>
+      <div class="collection-stats" aria-label="目录概况">
+        <div class="stat-main"><strong>{{ $total }}</strong><span>个思考工具</span></div>
+        <div class="stat-secondary"><span><strong>{{ len $catalog.categories }}</strong> 个领域</span><span><strong>{{ $published }}</strong> 篇解读</span></div>
+      </div>
+    </section>
+    <div class="library-layout">
+      <aside class="sidebar" aria-label="领域目录">
+        <div class="sidebar-inner">
+          <p class="sidebar-label">探索领域 <span>INDEX</span></p>
+          <a class="category-link all-link active" href="#directory" aria-current="true"><span>全部条目</span><span class="category-count">{{ $total }}</span></a>
+          <nav aria-label="按领域定位">
+            {{ range $index, $category := $catalog.categories }}
+            <a class="category-link" href="#{{ .id }}" data-category="{{ .id }}"><span class="category-name"><span class="category-number">{{ printf "%02d" (add $index 1) }}</span>{{ .name }}</span><span class="category-count">{{ len .items }}</span></a>
+            {{ end }}
+          </nav>
+          <div class="sidebar-note"><span aria-hidden="true">↗</span><p>先收藏一个概念，<br>再慢慢读懂它。</p><a href="#about-collection">关于这份索引</a></div>
+        </div>
+      </aside>
+      <div class="library-main" id="directory" tabindex="-1">
+        <div class="search-tools" hidden>
+          <div class="search-box">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <label class="sr-only" for="knowledge-search">搜索名称、英文、别名或关键词</label>
+            <input id="knowledge-search" type="search" placeholder="搜索名称、英文或关键词，例如 PDCA、决策…" autocomplete="off">
+            <kbd aria-hidden="true">/</kbd>
+          </div>
+          <div class="filter-row">
+            <div class="type-filters" role="group" aria-label="按知识类型筛选">
+              <button type="button" class="type-filter selected" data-type="" aria-pressed="true">全部类型</button>
+              {{ range slice "定律" "定理" "效应" "模型" "原则" "方法" "理论" }}<button type="button" class="type-filter" data-type="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}
+            </div>
+            <label class="read-filter"><input type="checkbox" id="articles-only"> 只看有解读</label>
+          </div>
+        </div>
+        <div class="results-bar"><p id="result-count" role="status" aria-live="polite">共 {{ $total }} 个条目</p><span>按领域收录 · 按需探索</span></div>
+        <div id="empty-state" class="empty-state" hidden><span class="empty-symbol" aria-hidden="true">⌕</span><h2>暂时没有匹配的条目</h2><p>试试中文名、英文缩写，或减少筛选条件。</p><button type="button" id="reset-filters">重置筛选，查看全部</button></div>
+        {{ range $index, $category := $catalog.categories }}
+        <section class="knowledge-section" id="{{ .id }}" aria-labelledby="heading-{{ .id }}">
+          <div class="section-heading"><div><span class="section-number">{{ printf "%02d" (add $index 1) }}</span><h2 id="heading-{{ .id }}">{{ .name }}</h2><span class="section-count">{{ len .items }}</span></div><p>{{ .description }}</p></div>
+          <div class="entry-grid">
+            {{ range .items }}
+            <article class="entry-card" id="{{ .id }}" data-type="{{ .type }}" data-published="{{ if .url }}true{{ else }}false{{ end }}" data-search="{{ .name }} {{ .english }} {{ delimit .aliases " " }} {{ .description }} {{ $category.name }} {{ .type }}">
+              <div class="entry-topline"><span class="entry-type">{{ .type }}</span>{{ if .url }}<span class="available-dot" title="已有解读"></span>{{ end }}</div>
+              <h3>{{ if .url }}<a href="{{ .url | relURL }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
+              <p class="entry-english" lang="en">{{ .english }}</p>
+              <p class="entry-description">{{ .description }}</p>
+              <div class="entry-footer">{{ if .url }}<a class="article-link" href="{{ .url | relURL }}">阅读解读 <span aria-hidden="true">↗</span></a>{{ else }}<span class="pending"><span></span>待撰写</span>{{ end }}</div>
+            </article>
+            {{ end }}
+          </div>
+        </section>
+        {{ end }}
+        <section class="about-collection" id="about-collection" aria-labelledby="about-title">
+          <p class="eyebrow">A GROWING COLLECTION</p><h2 id="about-title">从一个概念，到一次实践。</h2>
+          <p>这是一份持续扩充的索引，涵盖定律、定理、效应、模型、原则、方法与理论。点击条目进入解读，从具体问题出发，理解原理、阅读案例，再尝试一个小行动。</p>
+          <p>不同工具的依据和适用范围并不相同。经验法则不代表必然规律，模型依赖假设，心理效应也有研究边界。请把它们带回具体问题中理解。</p>
+          <details><summary>收录参考与延伸阅读</summary><p>以下资料用于发现和整理条目。各篇解读另附主题参考资料，区分理论假设、经验规则与研究边界；案例中的假设数据用于解释机制。</p><ul>{{ range $catalog.sources }}<li><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .name }} <span aria-hidden="true">↗</span></a></li>{{ end }}</ul></details>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><span>{{ .Site.Params.logoTitle }} · 保持好奇，持续思考。</span><a href="#page-title">回到顶部 ↑</a></footer>
+</body>
+</html>
